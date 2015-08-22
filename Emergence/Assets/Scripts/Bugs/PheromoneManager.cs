@@ -1,9 +1,22 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 
-public class PheromoneManager : MonoBehaviour {
+public class PheromoneManager : MonoBehaviour
+{
+    #region Properties
+    [SerializeField]
+    List<Pheromone> m_Pheromones = new List<Pheromone>();
+    #endregion
 
-	// Use this for initialization
+    #region API
+    public void DropPheromone(Pheromone pheromone, Vector3 position)
+    {
+
+    }
+    #endregion
+
+    // Use this for initialization
 	void Start () {
 	
 	}
