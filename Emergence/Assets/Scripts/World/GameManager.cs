@@ -4,8 +4,11 @@ using System.Collections;
 public class GameManager : MonoBehaviour
 {
     #region Properties
+    [Header("Bugs")]
     [SerializeField]
     BugManager m_BugManager = null;
+    [SerializeField]
+    int m_BugsCount = 0;
     #endregion
 
     #region API
@@ -19,7 +22,7 @@ public class GameManager : MonoBehaviour
 
     public void StartGame()
     {
-
+        m_BugManager.CreateNewBugs(m_BugsCount);
     }
     #endregion
 
@@ -27,11 +30,10 @@ public class GameManager : MonoBehaviour
     void Awake()
     {
         s_Instance = this;
-        m_BugManager = BugManager.Instance;
     }
 
 	void Start () {
-	    
+        StartGame();
 	}
 	
 	void Update () {

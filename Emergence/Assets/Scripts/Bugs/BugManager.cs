@@ -70,6 +70,14 @@ public class BugManager : MonoBehaviour
         Bug bug = InstantiateBug();
     }
 
+    public void CreateNewBugs(int count)
+    {
+        for (int i = 0; i < count; i++)
+        {
+            InstantiateBug();
+        }
+    }
+
     /// <summary>
     /// Set bug to Dead.
     /// </summary>
@@ -101,8 +109,12 @@ public class BugManager : MonoBehaviour
     #endregion
 
     #region Unity
+    void Awake()
+    {
+        m_BugsParent = new GameObject("Bugs");
+    }
 	void Start () {
-        CreateNewBug();
+        
 	}
 	
 	void Update () {
@@ -112,6 +124,7 @@ public class BugManager : MonoBehaviour
 
     #region Private
     private static BugManager s_Instance = null;
+    GameObject m_BugsParent = null;
 
     /// <summary>
     /// Instantiate a bug and add it to the bug list.
@@ -120,8 +133,13 @@ public class BugManager : MonoBehaviour
     Bug InstantiateBug()
     {
         GameObject bugGameobject = Instantiate(BugPrefab);
+        bugGameobject.transform.SetParent(m_BugsParent.transform);
+
         Bug newBug = bugGameobject.GetComponent<Bug>();
         m_BugList.Add(newBug);
+
+        m_BugsParent.name = "Bugs (" + m_BugList.Count + ")"; 
+
         return newBug;
     }
     #endregion

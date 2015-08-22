@@ -33,7 +33,7 @@ public class Bug : MonoBehaviour
         m_Rigidbody = GetComponent<Rigidbody>();
 	}
 	
-	void Update () {
+	void FixedUpdate () {
         Move();
     }
     #endregion
@@ -42,6 +42,8 @@ public class Bug : MonoBehaviour
     Vector3 m_TargetPosition = new Vector3();
     Rigidbody m_Rigidbody = null;
     BugState m_State = BugState.Alive;
+
+    float m_TimeLastDecision = 0f;
 
     enum BugState
     {
@@ -61,18 +63,20 @@ public class Bug : MonoBehaviour
         }
 
         // Choose random direction for now
-        Vector3 position = gameObject.transform.position;
-        
-        m_Rigidbody.velocity = Vector3.zero;
-        if (new Vector2(m_TargetPosition.x - position.x, m_TargetPosition.z - position.z).magnitude < 0.5f)
+        if (Time.time - m_TimeLastDecision > 2f)
         {
-            m_TargetPosition = new Vector3(position.x + Random.Range(-5, 5), position.y, position.z + Random.Range(-5, 5));
-        }
-        Vector3 force = m_TargetPosition - position;
-        force.Normalize();
-        force *= m_Speed;
+            m_TimeLastDecision = Time.time;
 
-        m_Rigidbody.AddForce(force);        
+            Vector3 position = gameObject.transform.position;
+            m_Rigidbody.velocity = Vector3.zero;
+            m_TargetPosition = new Vector3(position.x + Random.Range(-5, 5), position.y, position.z + Random.Range(-5, 5));
+
+            Vector3 force = m_TargetPosition - position;
+            force.Normalize();
+            force *= m_Speed;
+
+            m_Rigidbody.AddForce(force);
+        }
     }
     #endregion
 }
