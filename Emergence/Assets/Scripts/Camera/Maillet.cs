@@ -34,10 +34,10 @@ public class Maillet : Arme {
 
     void OnTriggerEnter(Collider collider)
     {
-       _StopAttack();
        Bug bug = collider.GetComponentInChildren<Bug>();
         if(bug != null)
             bm.KillBug(bug);
+        _StopAttack();
     }
     #endregion
 

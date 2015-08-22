@@ -732,3 +732,49 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 22c3b43bd3ba4c54ab755749b288af97, type: 3}
   m_IsPrefabParent: 0
+--- !u!1001 &1992232136
+Prefab:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 457054, guid: 02e04df30451bfc4ca3c97b577d109cc, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: 58.5600014
+      objectReference: {fileID: 0}
+    - target: {fileID: 457054, guid: 02e04df30451bfc4ca3c97b577d109cc, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: 3.63000011
+      objectReference: {fileID: 0}
+    - target: {fileID: 457054, guid: 02e04df30451bfc4ca3c97b577d109cc, type: 2}
+      propertyPath: m_LocalPosition.z
+      value: 12.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 457054, guid: 02e04df30451bfc4ca3c97b577d109cc, type: 2}
+      propertyPath: m_LocalRotation.x
+      value: -.707106829
+      objectReference: {fileID: 0}
+    - target: {fileID: 457054, guid: 02e04df30451bfc4ca3c97b577d109cc, type: 2}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 457054, guid: 02e04df30451bfc4ca3c97b577d109cc, type: 2}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 457054, guid: 02e04df30451bfc4ca3c97b577d109cc, type: 2}
+      propertyPath: m_LocalRotation.w
+      value: .707106829
+      objectReference: {fileID: 0}
+    - target: {fileID: 457054, guid: 02e04df30451bfc4ca3c97b577d109cc, type: 2}
+      propertyPath: m_RootOrder
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 118598, guid: 02e04df30451bfc4ca3c97b577d109cc, type: 2}
+      propertyPath: m_Name
+      value: Particle System
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 100100000, guid: 02e04df30451bfc4ca3c97b577d109cc, type: 2}
+  m_IsPrefabParent: 0
