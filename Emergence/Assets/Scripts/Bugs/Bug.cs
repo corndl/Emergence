@@ -177,7 +177,8 @@ public class Bug : MonoBehaviour
     #region Pheromones
     void ReDropPheromone(Pheromone pheromone)
     {
-
+        Pheromone copy = pheromone.Duplicate(this, gameObject.transform.position);
+        ProcessPheromone(copy);
     }
 
     void DropPheromone(Pheromone.PheromoneType type)
@@ -219,6 +220,14 @@ public class Bug : MonoBehaviour
                 }
                 break;
         }
+    }
+    #endregion
+
+    #region Senses
+    void DetectPlayer()
+    {
+        Vector3 playerPosition = m_GameManager.Player.transform.position;
+        Vector2 playerXZ = new Vector2(playerPosition.x, playerPosition.z);
     }
     #endregion
     #endregion

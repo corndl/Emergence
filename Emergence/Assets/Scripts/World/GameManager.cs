@@ -11,6 +11,8 @@ public class GameManager : MonoBehaviour
     int m_BugsCount = 0;
     [SerializeField]
     public GameObject PheromonePrefab = null;
+    [SerializeField]
+    CameraController m_Player = null;
     #endregion
 
     #region API
@@ -27,6 +29,14 @@ public class GameManager : MonoBehaviour
         get
         {
             return m_BugManager;
+        }
+    }
+
+    public CameraController Player
+    {
+        get
+        {
+            return m_Player;
         }
     }
 
