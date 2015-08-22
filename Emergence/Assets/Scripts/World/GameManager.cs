@@ -3,8 +3,20 @@ using System.Collections;
 
 public class GameManager : MonoBehaviour
 {
+    #region Properties
+    [SerializeField]
+    BugManager m_BugManager = null;
+    #endregion
 
     #region API
+    public static GameManager Instance 
+    { 
+        get 
+        { 
+            return s_Instance; 
+        } 
+    }
+
     public void StartGame()
     {
 
@@ -12,6 +24,12 @@ public class GameManager : MonoBehaviour
     #endregion
 
     #region Unity
+    void Awake()
+    {
+        s_Instance = this;
+        m_BugManager = BugManager.Instance;
+    }
+
     // Use this for initialization
 	void Start () {
 	
@@ -21,5 +39,9 @@ public class GameManager : MonoBehaviour
 	void Update () {
 
     }
+    #endregion
+
+    #region Private
+    private static GameManager s_Instance = null;
     #endregion
 }
