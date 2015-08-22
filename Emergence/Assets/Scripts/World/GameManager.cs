@@ -9,6 +9,8 @@ public class GameManager : MonoBehaviour
     BugManager m_BugManager = null;
     [SerializeField]
     int m_BugsCount = 0;
+    [SerializeField]
+    public GameObject PheromonePrefab = null;
     #endregion
 
     #region API

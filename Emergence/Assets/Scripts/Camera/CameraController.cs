@@ -8,14 +8,22 @@ public class CameraController : MonoBehaviour {
     #region Properties
 
     [SerializeField]
-    private float _Speed = 20f;
+    float _Speed = 20f;
     [SerializeField]
-    private float _SpeedRotation = 5f;
+    float _SpeedRotation = 5f;
     /// <summary>
     /// gameObject contenant la camera
     /// </summary>
     [SerializeField] 
     GameObject _camera;
+    /// <summary>
+    /// pivot de rotation;
+    /// </summary>
+    [SerializeField] Transform _pivot;
+    /// <summary>
+    /// pivot de rotation de l'arme
+    /// </summary>
+    [SerializeField] private Transform _pivotArme;
     /// <summary>
     /// hauteur de la camera par rapport au sol
     /// </summary>
@@ -30,12 +38,12 @@ public class CameraController : MonoBehaviour {
     /// position minimal de la camera dans l'espace
     /// </summary>
     [SerializeField]
-    Vector2 _mapMin = new Vector2(10f,10f);
+    Vector2 _mapMin = new Vector2(-1000f,-1000f);
     /// <summary>
     /// position minimal de la camera dans l'espace
     /// </summary>
     [SerializeField]
-    Vector2 _mapMax = new Vector2(50f, 50f);
+    Vector2 _mapMax = new Vector2(1000f, 1000f);
     /// <summary>
     /// angle d'inclinaison maximal [x,z]
     /// </summary>
@@ -127,6 +135,7 @@ public class CameraController : MonoBehaviour {
         {
             Vector3 target = hit.point;
             transform.position = target;
+            _pivotArme.up = hit.normal;
         }
         else
         {
@@ -140,7 +149,7 @@ public class CameraController : MonoBehaviour {
     /// </summary>
     void _Rotate()
     {
-        transform.rotation = Quaternion.Euler(_inclinaison.x, 0, _inclinaison.y);
+        _pivot.rotation = Quaternion.Euler(_inclinaison.x, 0, _inclinaison.y);
     }
 
     #endregion
