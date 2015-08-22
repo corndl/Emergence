@@ -32,7 +32,7 @@ public class IntGene : IGene {
 		return (IGene)this.intChildren();
 	}
 	/// <summary>
-	/// Create a child with possible mutation the children.
+	/// Create a child with possible mutation.
 	/// </summary>
 	/// <returns>The children.</returns>
 	public IntGene intChildren(){
