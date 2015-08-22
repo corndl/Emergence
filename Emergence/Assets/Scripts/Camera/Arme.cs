@@ -162,6 +162,8 @@ public class Arme : MonoBehaviour {
     [SerializeField] 
     protected float _cooldown = 0.2f;
 
+    [SerializeField] protected Color CibleColor=Color.green;
+
     #endregion
 
     #region API
@@ -170,14 +172,26 @@ public class Arme : MonoBehaviour {
     /// </summary>
     public virtual void Attack()
     {
-        if (_isAttacking|| _lastAttackTime + _cooldown >Time.time)
+        if (_isAttacking || _lastAttackTime + _cooldown >Time.time)
             return;
 
+        Debug.Log("LastAttack : " + _lastAttackTime);
+
+        foreach (var colli in _colliders)
+        {
+            colli.enabled = true;
+        }
         var M = transform.worldToLocalMatrix;
         TransformVector init = new TransformVector(transform.position,transform.rotation);
         TransformVector dest = new TransformVector(_normalTarget.position, _normalTarget.rotation);
         _transformCurve = new TransformCurve(init, Time.time, dest.Sub(init).Mult(-1).Sub(_transformCurve.GetSpeed(Time.time)), dest, Time.time + _timeAttack, dest.Sub(init).Mult(10),false);
         _isAttacking = true;
+        _tempCible = Instantiate(_normalTarget.gameObject);
+        _tempCible.transform.position = _normalTarget.position;
+        _tempCible.transform.rotation = _normalTarget.rotation;
+        _tempCible.GetComponentInChildren<SpriteRenderer>().color = CibleColor; 
+        _tempCible.transform.SetParent(null,true);
+        Destroy(_tempCible,_timeAttack);
     }
 
 
@@ -188,6 +202,7 @@ public class Arme : MonoBehaviour {
     // Use this for initialization
     protected virtual void Start()
     {
+        _colliders = GetComponentsInChildren<Collider>();
         _zeroTransformVector = new TransformVector();
         _initialTransformVector = new TransformVector(transform.localPosition,transform.localRotation);
         _transformCurve = new TransformCurve(_initialTransformVector, Time.time, _zeroTransformVector, _initialTransformVector, Time.time, _zeroTransformVector);
@@ -203,18 +218,24 @@ public class Arme : MonoBehaviour {
 
     #region Private
 
+    private Collider[] _colliders;
     private static TransformVector _zeroTransformVector = new TransformVector();
     private TransformVector _initialTransformVector;
     private TransformCurve _transformCurve;
     private bool _isAttacking = false;
     private float _lastAttackTime = 0;
+    private GameObject _tempCible;
     protected virtual void _StopAttack()
     {
         if (_isAttacking)
         {
+            foreach (var colli in _colliders)
+            {
+                colli.enabled = false;
+            }
             _transformCurve = new TransformCurve(new TransformVector(transform.localPosition, transform.localRotation),
                 Time.time, _zeroTransformVector, _initialTransformVector, Time.time + _timeAttack, _zeroTransformVector);
-            _lastAttackTime = _lastAttackTime;
+            _lastAttackTime = Time.time;
         }
         _isAttacking = false;
     }
