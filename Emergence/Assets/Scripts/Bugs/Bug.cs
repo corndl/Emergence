@@ -19,6 +19,7 @@ public class Bug : MonoBehaviour
     #region Unity
 	void Start () {
         m_TargetPosition = gameObject.transform.position;
+        m_Rigidbody = GetComponent<Rigidbody>();
 	}
 	
 	void Update () {
@@ -28,16 +29,23 @@ public class Bug : MonoBehaviour
 
     #region Private
     Vector3 m_TargetPosition = new Vector3();
+    Rigidbody m_Rigidbody = null;
+
     void Move()
     {
         // Choose random direction for now
         Vector3 position = gameObject.transform.position;
-        if (new Vector2(m_TargetPosition.x - position.x, m_TargetPosition.z - position.z).magnitude < 0.1f)
+        
+        m_Rigidbody.velocity = Vector3.zero;
+        if (new Vector2(m_TargetPosition.x - position.x, m_TargetPosition.z - position.z).magnitude < 0.5f)
         {
             m_TargetPosition = new Vector3(position.x + Random.Range(-5, 5), position.y, position.z + Random.Range(-5, 5));
         }
+        Vector3 force = m_TargetPosition - position;
+        force.Normalize();
+        force *= m_Speed;
 
-        gameObject.transform.Translate((m_TargetPosition - position) * Time.deltaTime * m_Speed);
+        m_Rigidbody.AddForce(force);        
     }
     #endregion
 }
