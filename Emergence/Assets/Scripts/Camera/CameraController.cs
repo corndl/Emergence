@@ -8,9 +8,9 @@ public class CameraController : MonoBehaviour {
     #region Properties
 
     [SerializeField]
-    private float _Speed = 20f;
+    float _Speed = 20f;
     [SerializeField]
-    private float _SpeedRotation = 5f;
+    float _SpeedRotation = 5f;
     /// <summary>
     /// gameObject contenant la camera
     /// </summary>
@@ -19,7 +19,11 @@ public class CameraController : MonoBehaviour {
     /// <summary>
     /// pivot de rotation;
     /// </summary>
-    [SerializeField] private Transform _pivot;
+    [SerializeField] Transform _pivot;
+    /// <summary>
+    /// pivot de rotation de l'arme
+    /// </summary>
+    [SerializeField] private Transform _pivotArme;
     /// <summary>
     /// hauteur de la camera par rapport au sol
     /// </summary>
@@ -131,6 +135,7 @@ public class CameraController : MonoBehaviour {
         {
             Vector3 target = hit.point;
             transform.position = target;
+            _pivotArme.up = hit.normal;
         }
         else
         {
