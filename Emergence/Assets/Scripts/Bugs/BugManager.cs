@@ -5,10 +5,21 @@ using System.Collections.Generic;
 public class BugManager : MonoBehaviour
 {
     #region Properties
+    [SerializeField]
     List<Bug> m_BugList = new List<Bug>();
+    [SerializeField]
+    GameObject BugPrefab = null;
     #endregion
 
     #region API
+    public static BugManager Instance
+    {
+        get
+        {
+            return s_Instance;
+        }
+    }
+
     public void CreateNewBug(Bug dad, Bug mom)
     {
         if (dad == null && mom == null)
@@ -72,8 +83,10 @@ public class BugManager : MonoBehaviour
     #endregion
 
     #region Private
+    private static BugManager s_Instance = null;
     Bug InstantiateBug()
     {
+        //GameObject newBug = null;
         Bug newBug = new Bug();
         m_BugList.Add(newBug);
         return newBug;
