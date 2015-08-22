@@ -1,16 +1,10 @@
 fileFormatVersion: 2
-<<<<<<< HEAD
 guid: 9677737a0171e3c4d95e3ff573b811c3
-=======
-guid: aaeed12044bb3194481ff89e089d04e5
-timeCreated: 1440240473
-licenseType: Pro
->>>>>>> 0086f1ddb3dd387174a7cb3794d683acd3ecb6c9
 ModelImporter:
   serializedVersion: 18
   fileIDToRecycleName:
-    100000: abdomen BU001
-    100002: //RootNode
+    100000: //RootNode
+    100002: Line001
     100004: Plane001
     100006: Plane005
     100008: Plane006
@@ -19,8 +13,8 @@ ModelImporter:
     100014: Plane009
     100016: Sphere001
     100018: Sphere002
-    400000: abdomen BU001
-    400002: //RootNode
+    400000: //RootNode
+    400002: Line001
     400004: Plane001
     400006: Plane005
     400008: Plane006
@@ -29,7 +23,7 @@ ModelImporter:
     400014: Plane009
     400016: Sphere001
     400018: Sphere002
-    2300000: abdomen BU001
+    2300000: Line001
     2300002: Plane001
     2300004: Plane005
     2300006: Plane006
@@ -38,7 +32,7 @@ ModelImporter:
     2300012: Plane009
     2300014: Sphere001
     2300016: Sphere002
-    3300000: abdomen BU001
+    3300000: Line001
     3300002: Plane001
     3300004: Plane005
     3300006: Plane006
@@ -49,17 +43,14 @@ ModelImporter:
     3300016: Sphere002
     4300000: Plane001
     4300002: Plane005
-    4300004: abdomen BU001
-    4300006: Sphere001
-    4300008: Sphere002
-    4300010: Plane006
-    4300012: Plane007
-    4300014: Plane008
-    4300016: Plane009
-<<<<<<< HEAD
+    4300004: Sphere001
+    4300006: Sphere002
+    4300008: Plane006
+    4300010: Plane007
+    4300012: Plane008
+    4300014: Plane009
+    4300016: Line001
     9500000: //RootNode
-=======
->>>>>>> 0086f1ddb3dd387174a7cb3794d683acd3ecb6c9
   materials:
     importMaterials: 1
     materialName: 0
@@ -83,11 +74,7 @@ ModelImporter:
     isReadable: 1
   meshes:
     lODScreenPercentages: []
-<<<<<<< HEAD
     globalScale: 0
-=======
-    globalScale: 1
->>>>>>> 0086f1ddb3dd387174a7cb3794d683acd3ecb6c9
     meshCompression: 0
     addColliders: 0
     importBlendShapes: 1
@@ -121,11 +108,7 @@ ModelImporter:
     feetSpacing: 0
     rootMotionBoneName: 
   lastHumanDescriptionAvatarSource: {instanceID: 0}
-<<<<<<< HEAD
   animationType: 2
-=======
-  animationType: 0
->>>>>>> 0086f1ddb3dd387174a7cb3794d683acd3ecb6c9
   additionalBone: 0
   userData: 
   assetBundleName: 
