@@ -37,12 +37,16 @@ public class IntGene : IGene {
 	/// <returns>The children.</returns>
 	public IntGene intChildren(){
 		IntGene child = (IntGene)this.MemberwiseClone();
+			child.Mutate();
+		return child;
+	}
+
+	public void Mutate(){
 		// si on a la chance de muter
 		if ( UnityEngine.Random.Range(0.0F, 1.0F) < mutationChance ){
 			// on mute au hasard dans l'interval
-			child.value = UnityEngine.Random.Range(min, max+1);
+			value = UnityEngine.Random.Range(min, max+1);
 		}
-		return child;
 	}
 
 }
