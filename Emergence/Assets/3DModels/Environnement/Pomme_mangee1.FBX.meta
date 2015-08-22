@@ -1,32 +1,22 @@
 fileFormatVersion: 2
-guid: 8b42ca2f023132d4098788ffd19669b8
-timeCreated: 1440265291
+guid: b148147990d52894c9ae424d08055e78
+timeCreated: 1440270720
 licenseType: Free
 ModelImporter:
   serializedVersion: 18
   fileIDToRecycleName:
-    100000: Cylinder001
-    100002: Line001
+    100000: Line001
+    100002: Plane001
     100004: //RootNode
-    100006: Sphere001
-    100008: Sphere002
-    400000: Cylinder001
-    400002: Line001
+    400000: Line001
+    400002: Plane001
     400004: //RootNode
-    400006: Sphere001
-    400008: Sphere002
-    2300000: Cylinder001
-    2300002: Line001
-    2300004: Sphere001
-    2300006: Sphere002
-    3300000: Cylinder001
-    3300002: Line001
-    3300004: Sphere001
-    3300006: Sphere002
+    2300000: Line001
+    2300002: Plane001
+    3300000: Line001
+    3300002: Plane001
     4300000: Line001
-    4300002: Cylinder001
-    4300004: Sphere001
-    4300006: Sphere002
+    4300002: Plane001
   materials:
     importMaterials: 1
     materialName: 0
@@ -50,7 +40,7 @@ ModelImporter:
     isReadable: 1
   meshes:
     lODScreenPercentages: []
-    globalScale: 4
+    globalScale: 1
     meshCompression: 0
     addColliders: 0
     importBlendShapes: 1

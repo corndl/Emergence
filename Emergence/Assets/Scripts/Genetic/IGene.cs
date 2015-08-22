@@ -11,6 +11,8 @@ public interface IGene {
 	// children
 	IGene children();
 
+	void Mutate();
+
 	// type gene (int, list)
 	// range
 	// % chance de mutation
