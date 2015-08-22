@@ -8,7 +8,9 @@ public class BugManager : MonoBehaviour
     [SerializeField]
     List<Bug> m_BugList = new List<Bug>();
     [SerializeField]
-    GameObject BugPrefab = null;
+    GameObject m_BugPrefab = null;
+    [SerializeField]
+    Vector3 m_InitialSpawnPoint = Vector3.zero;
     #endregion
 
     #region API
@@ -113,6 +115,7 @@ public class BugManager : MonoBehaviour
     {
         m_BugsParent = new GameObject("Bugs");
     }
+
 	void Start () {
         
 	}
@@ -120,6 +123,8 @@ public class BugManager : MonoBehaviour
 	void Update () {
 
     }
+
+    
     #endregion
 
     #region Private
@@ -130,10 +135,11 @@ public class BugManager : MonoBehaviour
     /// Instantiate a bug and add it to the bug list.
     /// </summary>
     /// <returns></returns>
-    Bug InstantiateBug()
+    Bug InstantiateBug(Vector3 SpawnPoint)
     {
-        GameObject bugGameobject = Instantiate(BugPrefab);
+        GameObject bugGameobject = Instantiate(m_BugPrefab);
         bugGameobject.transform.SetParent(m_BugsParent.transform);
+        bugGameobject.transform.position = SpawnPoint;
 
         Bug newBug = bugGameobject.GetComponent<Bug>();
         m_BugList.Add(newBug);
@@ -141,6 +147,15 @@ public class BugManager : MonoBehaviour
         m_BugsParent.name = "Bugs (" + m_BugList.Count + ")"; 
 
         return newBug;
+    }
+
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <returns></returns>
+    Bug InstantiateBug()
+    {
+        return InstantiateBug(m_InitialSpawnPoint);
     }
     #endregion
 }
