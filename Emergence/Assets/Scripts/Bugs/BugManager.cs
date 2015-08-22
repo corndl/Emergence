@@ -71,12 +71,10 @@ public class BugManager : MonoBehaviour
     #endregion
 
     #region Unity
-    // Use this for initialization
 	void Start () {
-	
+        CreateNewBug();
 	}
 	
-	// Update is called once per frame
 	void Update () {
 
     }
@@ -86,8 +84,8 @@ public class BugManager : MonoBehaviour
     private static BugManager s_Instance = null;
     Bug InstantiateBug()
     {
-        //GameObject newBug = null;
-        Bug newBug = new Bug();
+        GameObject bugGameobject = Instantiate(BugPrefab);
+        Bug newBug = bugGameobject.GetComponent<Bug>();
         m_BugList.Add(newBug);
         return newBug;
     }

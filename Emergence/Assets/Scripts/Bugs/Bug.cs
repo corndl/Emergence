@@ -11,13 +11,28 @@ public class Bug : MonoBehaviour
     }
     #endregion
 
-    // Use this for initialization
+    #region Unity
 	void Start () {
 	
 	}
 	
-	// Update is called once per frame
 	void Update () {
-	
-	}
+        Move();
+    }
+    #endregion
+
+    #region Private
+    Vector3 m_TargetPosition = new Vector3();
+    void Move()
+    {
+        // Choose random direction for now
+        Vector3 position = gameObject.transform.position;
+        if ((m_TargetPosition - position).magnitude < 0.1f)
+        {
+            m_TargetPosition = new Vector3(position.x + Random.Range(-5, 5), position.y, position.z + Random.Range(-5, 5));
+        }
+
+        gameObject.transform.Translate((m_TargetPosition - position) * Time.deltaTime);
+    }
+    #endregion
 }
