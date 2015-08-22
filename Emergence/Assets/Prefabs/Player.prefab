@@ -420,7 +420,7 @@ MonoBehaviour:
   _camera: {fileID: 106364}
   _pivot: {fileID: 420200}
   _pivotArme: {fileID: 455800}
-  _hauteur: 50
+  _hauteur: 20
   _position: {x: 25, y: 25}
   _mapMin: {x: -1000, y: -1000}
   _mapMax: {x: 1000, y: 1000}
@@ -450,6 +450,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3c7c0055c097411459ba4aefc688ecce, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _normalTarget: {fileID: 0}
+  _timeAttack: 1
+  _cooldown: .200000003
+  bm: {fileID: 0}
 --- !u!124 &12458226
 Behaviour:
   m_ObjectHideFlags: 1
@@ -479,6 +483,10 @@ Prefab:
     - target: {fileID: 0}
       propertyPath: m_LocalRotation.w
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: _hauteur
+      value: 20
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}

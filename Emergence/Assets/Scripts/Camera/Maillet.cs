@@ -4,6 +4,8 @@ using System.Collections;
 public class Maillet : Arme {
 
     #region Properties
+
+    [SerializeField] private BugManager bm;
     #endregion
 
     #region API
@@ -19,20 +21,23 @@ public class Maillet : Arme {
 
     #region Unity
     // Use this for initialization
-    void Start()
+    protected override void Start()
     {
-        Animator = GetComponent<Animator>();
+        base.Start();
     }
 
     // Update is called once per frame
-    void Update()
+    protected  override void Update()
     {
-
+        base.Update();
     }
 
     void OnTriggerEnter(Collider collider)
     {
-        _StopAttack();
+       _StopAttack();
+       Bug bug = collider.GetComponentInChildren<Bug>();
+        if(bug != null)
+            bm.KillBug(bug);
     }
     #endregion
 

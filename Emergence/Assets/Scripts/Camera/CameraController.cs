@@ -135,7 +135,7 @@ public class CameraController : MonoBehaviour {
         {
             Vector3 target = hit.point;
             transform.position = target;
-            _pivotArme.up = hit.normal;
+            _pivotArme.forward = -hit.normal;
         }
         else
         {
