@@ -10,6 +10,8 @@ public class Bug : MonoBehaviour
     [SerializeField]
     IntGene m_SpeedGene = new IntGene(50, 10, 200, 0.1f);
     [SerializeField]
+    public IntGene TimeTilReadyForMating = new IntGene(30, 5, 120, 0.3f);
+    [SerializeField]
     int m_EnvironmentLayer = 9;
     [SerializeField]
     int m_PheromoneLayer = 10;
@@ -59,6 +61,7 @@ public class Bug : MonoBehaviour
     {
         m_GameManager = GameObject.Find("Services").GetComponentInChildren<GameManager>();
         m_WorldMatrix = m_GameManager.Matrix;
+        m_InstanciationTime = Time.time;
     }
 
 	void Start () {
@@ -68,7 +71,10 @@ public class Bug : MonoBehaviour
 	
 	void FixedUpdate () {
         OutOfBonds();
-
+        if (m_State == BugState.Dead)
+        {
+            return;
+        }
         Move();
     }
 
@@ -87,34 +93,6 @@ public class Bug : MonoBehaviour
             m_State = BugState.MidAir;
         }
     }
-
-    void OnTriggerEnter(Collider coll)
-    {
-        /*
-        if (coll.gameObject.layer == m_PheromoneLayer)
-        {
-            Pheromone pheromone = coll.gameObject.GetComponent<Pheromone>();
-            if (pheromone == null)
-            {
-                return;
-            }
-            ProcessPheromone(pheromone);
-        }//*/
-    }
-
-    void OnTriggerExit(Collider coll)
-    {
-        /*
-        if (coll.gameObject.layer == m_PheromoneLayer)
-        {
-            Pheromone pheromone = coll.gameObject.GetComponent<Pheromone>();
-            if (pheromone == null)
-            {
-                return;
-            }
-            ReDropPheromone(pheromone);
-        }//*/
-    }
     #endregion
 
     #region Private
@@ -122,6 +100,7 @@ public class Bug : MonoBehaviour
     Rigidbody m_Rigidbody = null;
     BugState m_State = BugState.MidAir;
     BugBehaviour m_Behaviour = BugBehaviour.Searching;
+    float m_InstanciationTime;
 
     float m_TimeLastDecision = 0f;
 
@@ -155,6 +134,7 @@ public class Bug : MonoBehaviour
     /// </summary>
     void Move()
     {
+        CanMate();
         DetectPlayer();
 
         if (m_State != BugState.OnGround)
@@ -187,7 +167,7 @@ public class Bug : MonoBehaviour
                     Search();
                     break;
                 case (BugBehaviour.Mating):
-                    Search();
+                    Mating();
                     break;
             }
         }
@@ -197,6 +177,20 @@ public class Bug : MonoBehaviour
         force *= m_SpeedGene.value;
 
         m_Rigidbody.velocity = force;
+    }
+
+    void CanMate()
+    {
+        if (Time.time - TimeTilReadyForMating.value > m_InstanciationTime)
+        {
+            m_Behaviour = BugBehaviour.Mating;
+        }
+    }
+
+    void Mating()
+    {
+        m_TargetPosition = gameObject.transform.position;
+        DropPheromone(Pheromone.PheromoneType.Mating, m_TargetPosition);
     }
 
     void Search()
@@ -292,6 +286,8 @@ public class Bug : MonoBehaviour
             m_Behaviour = BugBehaviour.Searching;
         }
     }
+
+
     #endregion
     #endregion
 }
