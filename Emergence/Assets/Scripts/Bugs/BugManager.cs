@@ -106,6 +106,7 @@ public class BugManager : MonoBehaviour
         }
 
         m_BugList.Remove(bug);
+        m_BugsParent.name = "Bugs (" + m_BugList.Count + ")"; 
         bug.DestroyBug();
     }
     #endregion
