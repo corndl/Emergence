@@ -15,6 +15,7 @@ ModelImporter:
     100014: Plane009
     100016: Sphere001
     100018: Sphere002
+    100020: Line001
     400000: abdomen BU001
     400002: //RootNode
     400004: Plane001
@@ -25,6 +26,7 @@ ModelImporter:
     400014: Plane009
     400016: Sphere001
     400018: Sphere002
+    400020: Line001
     2300000: abdomen BU001
     2300002: Plane001
     2300004: Plane005
@@ -34,6 +36,7 @@ ModelImporter:
     2300012: Plane009
     2300014: Sphere001
     2300016: Sphere002
+    2300018: Line001
     3300000: abdomen BU001
     3300002: Plane001
     3300004: Plane005
@@ -43,6 +46,7 @@ ModelImporter:
     3300012: Plane009
     3300014: Sphere001
     3300016: Sphere002
+    3300018: Line001
     4300000: Plane001
     4300002: Plane005
     4300004: abdomen BU001
@@ -52,6 +56,7 @@ ModelImporter:
     4300012: Plane007
     4300014: Plane008
     4300016: Plane009
+    4300018: Line001
   materials:
     importMaterials: 1
     materialName: 0
