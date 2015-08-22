@@ -101,6 +101,8 @@ public class Bug : MonoBehaviour
     BugState m_State = BugState.MidAir;
     BugBehaviour m_Behaviour = BugBehaviour.Searching;
     float m_InstanciationTime;
+    Bug m_Mate = null;
+    bool m_HasMated = false;
 
     float m_TimeLastDecision = 0f;
 
@@ -117,6 +119,7 @@ public class Bug : MonoBehaviour
         Searching,
         Gathering,
         Mating,
+        SeekingMate,
         Fleeing
     }
 
@@ -136,6 +139,7 @@ public class Bug : MonoBehaviour
     {
         CanMate();
         DetectPlayer();
+        GetPheromonesCurrentTile();
 
         if (m_State != BugState.OnGround)
         {
@@ -155,6 +159,9 @@ public class Bug : MonoBehaviour
             m_TimeLastDecision = Time.time;            
             m_Rigidbody.velocity = Vector3.zero;
 
+            if (m_Behaviour == BugBehaviour.Mating)
+                Debug.Log("FFS MATING");
+
             switch (m_Behaviour)
             {
                 case (BugBehaviour.Searching):
@@ -168,6 +175,9 @@ public class Bug : MonoBehaviour
                     break;
                 case (BugBehaviour.Mating):
                     Mating();
+                    break;
+                case (BugBehaviour.SeekingMate):
+                    SeekMate();
                     break;
             }
         }
@@ -191,6 +201,15 @@ public class Bug : MonoBehaviour
     {
         m_TargetPosition = gameObject.transform.position;
         DropPheromone(Pheromone.PheromoneType.Mating, m_TargetPosition);
+    }
+
+    void SeekMate()
+    {
+        if ((m_TargetPosition - gameObject.transform.position).magnitude < 1f)
+        {
+            Mate();
+            m_Behaviour = BugBehaviour.Searching;
+        }
     }
 
     void Search()
@@ -238,11 +257,6 @@ public class Bug : MonoBehaviour
             return;
         }
 
-        if (m_Pheromones.Contains(pheromone))
-        {
-            return;
-        }
-
         switch (pheromone.Type)
         {
             case (Pheromone.PheromoneType.Ennemy):
@@ -251,7 +265,9 @@ public class Bug : MonoBehaviour
             case (Pheromone.PheromoneType.Mating):
                 if (pheromone.Dropper != this)
                 {
+                    m_Behaviour = BugBehaviour.SeekingMate;
                     m_TargetPosition = pheromone.Target;
+                    m_Mate = pheromone.Dropper;
                 }
                 break;
             case (Pheromone.PheromoneType.Food):
@@ -281,13 +297,19 @@ public class Bug : MonoBehaviour
             m_Behaviour = BugBehaviour.Fleeing;
             DropPheromone(Pheromone.PheromoneType.Ennemy, playerPosition);
         }
-        else
-        {
-            m_Behaviour = BugBehaviour.Searching;
-        }
     }
-
-
     #endregion
+
+    void Mate()
+    {
+        // Can only mate once
+        if (m_HasMated)
+        {
+            return;
+        }
+        m_GameManager.BugManager.CreateNewBug(this, m_Mate);
+        m_Mate = null;
+        m_HasMated = true;
+    }
     #endregion
 }

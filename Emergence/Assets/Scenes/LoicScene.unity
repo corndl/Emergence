@@ -198,6 +198,14 @@ Prefab:
       propertyPath: m_RootOrder
       value: 4
       objectReference: {fileID: 0}
+    - target: {fileID: 11462844, guid: f32da37c492c3224a8f8acb961cb6abf, type: 2}
+      propertyPath: bm
+      value: 
+      objectReference: {fileID: 831849976}
+    - target: {fileID: 11462844, guid: f32da37c492c3224a8f8acb961cb6abf, type: 2}
+      propertyPath: _normalTarget
+      value: 
+      objectReference: {fileID: 1287437904}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: f32da37c492c3224a8f8acb961cb6abf, type: 2}
   m_IsPrefabParent: 0
@@ -356,6 +364,10 @@ MonoBehaviour:
 Transform:
   m_PrefabParentObject: {fileID: 445538, guid: f32da37c492c3224a8f8acb961cb6abf, type: 2}
   m_PrefabInternal: {fileID: 448631113}
+--- !u!4 &1287437904 stripped
+Transform:
+  m_PrefabParentObject: {fileID: 455800, guid: f32da37c492c3224a8f8acb961cb6abf, type: 2}
+  m_PrefabInternal: {fileID: 448631113}
 --- !u!1 &1599039637
 GameObject:
   m_ObjectHideFlags: 0
@@ -467,7 +479,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_BugManager: {fileID: 831849976}
-  m_BugsCount: 800
+  m_BugsCount: 50
   PheromonePrefab: {fileID: 145752, guid: 7bfe406993b92e8418ddfba00a522c72, type: 2}
   m_Player: {fileID: 448631114}
   m_Matrix: {fileID: 827146993}

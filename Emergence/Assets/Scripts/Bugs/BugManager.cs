@@ -47,6 +47,8 @@ public class BugManager : MonoBehaviour
 
         Bug bug = InstantiateBug();
         // Genetics
+        bug.Speed = dad.Speed.intChildren();
+        bug.TimeTilReadyForMating = mom.TimeTilReadyForMating.intChildren();
     }
 
     /// <summary>
@@ -63,6 +65,7 @@ public class BugManager : MonoBehaviour
 
         // Genetics
         bug.Speed = parent.Speed.intChildren();
+        bug.TimeTilReadyForMating = parent.TimeTilReadyForMating.intChildren();
     }
 
     /// <summary>
@@ -108,7 +111,6 @@ public class BugManager : MonoBehaviour
 
         m_BugList.Remove(bug);
         m_BugsParent.name = "Bugs (" + m_BugList.Count + ")";
-        CreateNewBug(bug);
         bug.DestroyBug();
     }
     #endregion
@@ -140,6 +142,10 @@ public class BugManager : MonoBehaviour
     /// <returns></returns>
     Bug InstantiateBug(Vector3 SpawnPoint)
     {
+        if (m_BugList.Count >= 500)
+        {
+            return null;
+        }
         GameObject bugGameobject = Instantiate(m_BugPrefab);
         bugGameobject.transform.SetParent(m_BugsParent.transform);
         bugGameobject.transform.position = SpawnPoint;
@@ -149,7 +155,7 @@ public class BugManager : MonoBehaviour
 
         m_BugsParent.name = "Bugs (" + m_BugList.Count + ")";
 
-        newBug.Speed = newBug.Speed.intChildren();
+        newBug.TimeTilReadyForMating = newBug.TimeTilReadyForMating.intChildren();
 
         return newBug;
     }

@@ -635,11 +635,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ca5f5ce1b4e980c4eb6ac856ff69a8ca, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Speed: 50
+  m_Speed: 100
+  m_SpeedGene:
+    type: 
+    value: 50
+    min: 10
+    max: 200
+    mutationChance: .100000001
+  TimeTilReadyForMating:
+    type: int
+    value: 30
+    min: 5
+    max: 120
+    mutationChance: .300000012
   m_EnvironmentLayer: 9
   m_PheromoneLayer: 10
-  m_Pheromones: []
   m_GameManager: {fileID: 0}
+  m_WorldMatrix: {fileID: 0}
+  m_MinimumDistanceFleeing: 20
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1
@@ -683,6 +696,22 @@ Prefab:
     - target: {fileID: 0}
       propertyPath: m_Mass
       value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: m_SpeedGene.value
+      value: 50
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: m_SpeedGene.min
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: m_SpeedGene.max
+      value: 200
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: m_SpeedGene.mutationChance
+      value: .100000001
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
