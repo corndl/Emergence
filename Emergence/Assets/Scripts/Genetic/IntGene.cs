@@ -13,16 +13,13 @@ public class IntGene : IGene {
 	// % chance de mutation
 	float mutationChance;
 
+	public IntGene( int Value, int Min, int Max, float MutationChance ){
+		value = Value;
+		min = Min;
+		max = Max;
+		mutationChance = MutationChance;
+	}
 
-	// Chargement des genes
-	public void set(string sgene){
-		
-	}
-	// serialize gene
-	public string get (){
-		return type ;
-//		return type +" "+ min.ToString +" "+ max.ToString +" "+ mutationChance.ToString ;
-	}
 	// children
 	public IGene children(){
 		

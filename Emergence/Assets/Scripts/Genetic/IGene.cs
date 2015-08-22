@@ -4,9 +4,10 @@ using System.Collections;
 public interface IGene {
 
 	// Chargement des genes
-	void set(string sgene);
-	// save gene
-	string get ();
+	//void set(string sgene);
+	// serialize gene
+	//string get ();
+
 	// children
 	IGene children();
 
