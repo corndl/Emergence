@@ -15,6 +15,8 @@ public class Bug : MonoBehaviour
     List<Pheromone> m_Pheromones = new List<Pheromone>();
     [SerializeField]
     GameManager m_GameManager = null;
+    [SerializeField]
+    float m_MinimumDistanceFleeing = 20f;
     #endregion
 
     #region API
@@ -50,18 +52,7 @@ public class Bug : MonoBehaviour
 	void FixedUpdate () {
         OutOfBonds();
 
-        switch (m_Behaviour)
-        {
-            case (BugBehaviour.Searching):
-                Search();
-                break;
-            case (BugBehaviour.Fleeing):
-                break;
-            case (BugBehaviour.Gathering):
-                break;
-            case (BugBehaviour.Mating):
-                break;
-        }
+        Move();
     }
 
     void OnCollisionEnter(Collision coll)
@@ -143,8 +134,10 @@ public class Bug : MonoBehaviour
     /// <summary>
     /// Find target position and move towards it. (Currently random)
     /// </summary>
-    void Search()
+    void Move()
     {
+        DetectPlayer();
+
         if (m_State != BugState.OnGround)
         {
             m_Rigidbody.velocity = Vector3.zero;
@@ -160,10 +153,24 @@ public class Bug : MonoBehaviour
         // Choose random direction for now
         if (Time.time - m_TimeLastDecision > 0.1f)
         {
-            m_TimeLastDecision = Time.time;
-            
+            m_TimeLastDecision = Time.time;            
             m_Rigidbody.velocity = Vector3.zero;
-            m_TargetPosition = new Vector3(position.x + Random.Range(-5, 5), position.y, position.z + Random.Range(-5, 5));
+
+            switch (m_Behaviour)
+            {
+                case (BugBehaviour.Searching):
+                    Search();
+                    break;
+                case (BugBehaviour.Fleeing):
+                    Flee();
+                    break;
+                case (BugBehaviour.Gathering):
+                    Search();
+                    break;
+                case (BugBehaviour.Mating):
+                    Search();
+                    break;
+            }
         }
 
         Vector3 force = m_TargetPosition - position;
@@ -171,6 +178,20 @@ public class Bug : MonoBehaviour
         force *= m_Speed;
 
         m_Rigidbody.velocity = force;
+    }
+
+    void Search()
+    {
+        Vector3 position = gameObject.transform.position;
+        m_TargetPosition = new Vector3(position.x + Random.Range(-5, 5), position.y, position.z + Random.Range(-5, 5));
+    }
+
+    void Flee()
+    {
+        Vector3 playerPosition = m_GameManager.Player.transform.position;
+        Vector3 position = gameObject.transform.position;
+
+        m_TargetPosition = new Vector3(position.x - playerPosition.x, position.y, position.z - playerPosition.z);
     }
     #endregion
 
@@ -193,6 +214,12 @@ public class Bug : MonoBehaviour
 
     void ProcessPheromone(Pheromone pheromone)
     {
+        // Flee for your life
+        if (m_Behaviour == BugBehaviour.Fleeing)
+        {
+            return;
+        }
+
         if (m_Pheromones.Contains(pheromone))
         {
             return;
@@ -228,6 +255,17 @@ public class Bug : MonoBehaviour
     {
         Vector3 playerPosition = m_GameManager.Player.transform.position;
         Vector2 playerXZ = new Vector2(playerPosition.x, playerPosition.z);
+        Vector2 bugXZ = new Vector2(gameObject.transform.position.x, gameObject.transform.position.z);
+
+        float distance = Mathf.Sqrt((playerXZ - bugXZ).sqrMagnitude);
+        if (distance < m_MinimumDistanceFleeing)
+        {
+            m_Behaviour = BugBehaviour.Fleeing;
+        }
+        else
+        {
+            m_Behaviour = BugBehaviour.Searching;
+        }
     }
     #endregion
     #endregion
