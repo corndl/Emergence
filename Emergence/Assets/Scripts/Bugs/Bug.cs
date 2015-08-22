@@ -6,7 +6,9 @@ public class Bug : MonoBehaviour
 {
     #region Properties
     [SerializeField]
-    float m_Speed = 100;
+    int m_Speed = 100;
+    [SerializeField]
+    IntGene m_SpeedGene = new IntGene(50, 10, 200, 0.1f);
     [SerializeField]
     int m_EnvironmentLayer = 9;
     [SerializeField]
@@ -22,6 +24,18 @@ public class Bug : MonoBehaviour
     #endregion
 
     #region API
+    public IntGene Speed 
+    {
+        get
+        {
+            return m_SpeedGene;
+        }
+        set
+        {
+            m_SpeedGene = value;
+        }
+    }
+
     /// <summary>
     /// Set Bug as dead and stops all movements.
     /// </summary>
@@ -148,7 +162,7 @@ public class Bug : MonoBehaviour
             m_Rigidbody.velocity = Vector3.zero;
             if (m_State == BugState.MidAir)
             {
-                m_Rigidbody.velocity = Vector3.down * m_Speed;
+                m_Rigidbody.velocity = Vector3.down * m_SpeedGene.value;
             }
             return;
         }
@@ -180,7 +194,7 @@ public class Bug : MonoBehaviour
 
         Vector3 force = m_TargetPosition - position;
         force.Normalize();
-        force *= m_Speed;
+        force *= m_SpeedGene.value;
 
         m_Rigidbody.velocity = force;
     }

@@ -62,6 +62,7 @@ public class BugManager : MonoBehaviour
         }
 
         // Genetics
+        bug.Speed = parent.Speed.intChildren();
     }
 
     /// <summary>
@@ -106,7 +107,8 @@ public class BugManager : MonoBehaviour
         }
 
         m_BugList.Remove(bug);
-        m_BugsParent.name = "Bugs (" + m_BugList.Count + ")"; 
+        m_BugsParent.name = "Bugs (" + m_BugList.Count + ")";
+        CreateNewBug(bug);
         bug.DestroyBug();
     }
     #endregion
@@ -145,7 +147,9 @@ public class BugManager : MonoBehaviour
         Bug newBug = bugGameobject.GetComponent<Bug>();
         m_BugList.Add(newBug);
 
-        m_BugsParent.name = "Bugs (" + m_BugList.Count + ")"; 
+        m_BugsParent.name = "Bugs (" + m_BugList.Count + ")";
+
+        newBug.Speed = newBug.Speed.intChildren();
 
         return newBug;
     }

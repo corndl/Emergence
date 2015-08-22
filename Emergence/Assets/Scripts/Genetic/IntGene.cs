@@ -1,16 +1,22 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System;
 
-
+[Serializable]
 public class IntGene : IGene {
 	// type gene (int, list)
+    [SerializeField]
 	string type = "int";
 	// valeur
+    [SerializeField]
 	public int value;
 	// range
+    [SerializeField]
 	int min;
+    [SerializeField]
 	int max;
 	// % chance de mutation
+    [SerializeField]
 	float mutationChance;
 
 	public IntGene( int Value, int Min, int Max, float MutationChance ){
@@ -32,9 +38,9 @@ public class IntGene : IGene {
 	public IntGene intChildren(){
 		IntGene child = (IntGene)this.MemberwiseClone();
 		// si on a la chance de muter
-		if ( Random.Range(0.0F, 1.0F) < mutationChance ){
+		if ( UnityEngine.Random.Range(0.0F, 1.0F) < mutationChance ){
 			// on mute au hasard dans l'interval
-			child.value = Random.Range(min, max+1);
+			child.value = UnityEngine.Random.Range(min, max+1);
 		}
 		return child;
 	}
