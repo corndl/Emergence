@@ -12,9 +12,11 @@ public class Bug : MonoBehaviour
     [SerializeField]
     public IntGene TimeTilReadyForMating = new IntGene(30, 5, 120, 0.3f);
     [SerializeField]
+    public IntGene FoodHPPerByte = new IntGene(5, 1, 10, 0.5f);
+    [SerializeField]
     int m_EnvironmentLayer = 9;
     [SerializeField]
-    int m_PheromoneLayer = 10;
+    int m_FoodLayer = 11;
     [SerializeField]
     List<Pheromone> m_Pheromones = new List<Pheromone>();
     [SerializeField]
@@ -83,6 +85,11 @@ public class Bug : MonoBehaviour
         if (coll.gameObject.layer == m_EnvironmentLayer)
         {
             m_State = BugState.OnGround;
+        }
+        if (coll.gameObject.layer == m_FoodLayer)
+        {
+            Food food = coll.gameObject.GetComponent<Food>();
+            food.Eat(FoodHPPerByte.value);
         }
     }
 
@@ -158,9 +165,6 @@ public class Bug : MonoBehaviour
         {
             m_TimeLastDecision = Time.time;            
             m_Rigidbody.velocity = Vector3.zero;
-
-            if (m_Behaviour == BugBehaviour.Mating)
-                Debug.Log("FFS MATING");
 
             switch (m_Behaviour)
             {

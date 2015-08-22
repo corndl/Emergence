@@ -49,6 +49,7 @@ public class BugManager : MonoBehaviour
         // Genetics
         bug.Speed = dad.Speed.intChildren();
         bug.TimeTilReadyForMating = mom.TimeTilReadyForMating.intChildren();
+        bug.FoodHPPerByte = dad.FoodHPPerByte.intChildren();
     }
 
     /// <summary>
@@ -66,6 +67,7 @@ public class BugManager : MonoBehaviour
         // Genetics
         bug.Speed = parent.Speed.intChildren();
         bug.TimeTilReadyForMating = parent.TimeTilReadyForMating.intChildren();
+        bug.FoodHPPerByte = parent.FoodHPPerByte.intChildren();
     }
 
     /// <summary>
@@ -95,6 +97,8 @@ public class BugManager : MonoBehaviour
             return;
         }
 
+        m_DeadBugs.Add(bug);
+        m_BugList.Remove(bug);
         bug.KillBug();
     }
 
@@ -109,6 +113,7 @@ public class BugManager : MonoBehaviour
             return;
         }
 
+        m_DeadBugs.Remove(bug);
         m_BugList.Remove(bug);
         m_BugsParent.name = "Bugs (" + m_BugList.Count + ")";
         bug.DestroyBug();
@@ -135,6 +140,7 @@ public class BugManager : MonoBehaviour
     #region Private
     private static BugManager s_Instance = null;
     GameObject m_BugsParent = null;
+    List<Bug> m_DeadBugs = new List<Bug>();
 
     /// <summary>
     /// Instantiate a bug and add it to the bug list.
