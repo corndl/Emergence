@@ -16,6 +16,8 @@ public class Bug : MonoBehaviour
     [SerializeField]
     GameManager m_GameManager = null;
     [SerializeField]
+    WorldMatrix m_WorldMatrix;
+    [SerializeField]
     float m_MinimumDistanceFleeing = 20f;
     #endregion
 
@@ -42,6 +44,7 @@ public class Bug : MonoBehaviour
     void Awake()
     {
         m_GameManager = GameObject.Find("Services").GetComponentInChildren<GameManager>();
+        m_WorldMatrix = m_GameManager.Matrix;
     }
 
 	void Start () {
@@ -73,6 +76,7 @@ public class Bug : MonoBehaviour
 
     void OnTriggerEnter(Collider coll)
     {
+        /*
         if (coll.gameObject.layer == m_PheromoneLayer)
         {
             Pheromone pheromone = coll.gameObject.GetComponent<Pheromone>();
@@ -81,11 +85,12 @@ public class Bug : MonoBehaviour
                 return;
             }
             ProcessPheromone(pheromone);
-        }
+        }//*/
     }
 
     void OnTriggerExit(Collider coll)
     {
+        /*
         if (coll.gameObject.layer == m_PheromoneLayer)
         {
             Pheromone pheromone = coll.gameObject.GetComponent<Pheromone>();
@@ -94,7 +99,7 @@ public class Bug : MonoBehaviour
                 return;
             }
             ReDropPheromone(pheromone);
-        }
+        }//*/
     }
     #endregion
 
@@ -196,19 +201,24 @@ public class Bug : MonoBehaviour
     #endregion
 
     #region Pheromones
-    void ReDropPheromone(Pheromone pheromone)
+    void GetPheromonesCurrentTile()
     {
-        Pheromone copy = pheromone.Duplicate(this, gameObject.transform.position);
-        ProcessPheromone(copy);
+        WorldMatrix.Tile tile = m_WorldMatrix.GetTile(gameObject.transform.position);
+        foreach (Pheromone pheromone in tile.Pheromones)
+        {
+            ProcessPheromone(pheromone);
+        }
     }
 
-    void DropPheromone(Pheromone.PheromoneType type)
+    void ReDropPheromone(Pheromone pheromone)
     {
-        GameObject pheromoneGameobject = Instantiate(m_GameManager.PheromonePrefab);
-        Pheromone pheromone = pheromoneGameobject.GetComponent<Pheromone>();
-        pheromone.Type = type;
-        pheromone.Position = gameObject.transform.position;
-        pheromone.Dropper = this;
+        DropPheromone(pheromone.Type, pheromone.Target);
+    }
+
+    void DropPheromone(Pheromone.PheromoneType type, Vector3 target)
+    {
+        Pheromone pheromone = new Pheromone(type, target, this);
+        m_WorldMatrix.DropPheromone(pheromone, gameObject.transform.position);
         ProcessPheromone(pheromone);
     }
 
@@ -261,6 +271,7 @@ public class Bug : MonoBehaviour
         if (distance < m_MinimumDistanceFleeing)
         {
             m_Behaviour = BugBehaviour.Fleeing;
+            DropPheromone(Pheromone.PheromoneType.Ennemy, playerPosition);
         }
         else
         {

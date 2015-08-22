@@ -16,13 +16,17 @@ public class PheromoneManager : MonoBehaviour
     }
     #endregion
 
-    // Use this for initialization
+    #region Unity
 	void Start () {
 	
 	}
 	
-	// Update is called once per frame
 	void Update () {
-	
-	}
+
+    }
+    #endregion
+
+    #region Private
+
+    #endregion
 }

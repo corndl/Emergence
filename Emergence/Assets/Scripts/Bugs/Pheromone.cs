@@ -1,11 +1,27 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class Pheromone : MonoBehaviour
+public class Pheromone
 {
     #region Properties
     [SerializeField]
-    GameManager m_GameManager = null;
+    float m_LifeDuracyInSeconds = 10f;
+
+    public float LifeDuracyInSeconds
+    {
+        get
+        {
+            return m_LifeDuracyInSeconds;
+        }
+    }
+
+    public bool HasToDie
+    {
+        get
+        {
+            return (Time.time - m_LifeDuracyInSeconds > m_InstanciationTime);
+        }
+    }
 
     public PheromoneType Type
     {
@@ -16,18 +32,6 @@ public class Pheromone : MonoBehaviour
         set
         {
             m_PheromoneType = value;
-        }
-    }
-
-    public Vector3 Position
-    {
-        get
-        {
-            return gameObject.transform.position;
-        }
-        set
-        {
-            gameObject.transform.position = value;
         }
     }
 
@@ -57,6 +61,14 @@ public class Pheromone : MonoBehaviour
     #endregion
 
     #region API
+    public Pheromone(PheromoneType type, Vector3 target, Bug dropper)
+    {
+        Type = type;
+        Target = target;
+        Dropper = dropper;
+
+        m_InstanciationTime = Time.time;
+    }
     public enum PheromoneType
     {
         Home,
@@ -64,38 +76,12 @@ public class Pheromone : MonoBehaviour
         Mating,
         Ennemy
     }
-
-    public Pheromone Duplicate(Bug dropper, Vector3 position)
-    {
-        GameObject copyGameobject = Instantiate(m_GameManager.PheromonePrefab);
-        Pheromone copy = copyGameobject.GetComponent<Pheromone>();
-        copy.Type = Type;
-        copy.Position = position;
-        copy.Target = Target;
-        copy.Dropper = dropper;
-
-        return copy;
-    }
-    #endregion
-
-    #region Unity
-    void Awake()
-    {
-        m_GameManager = GameObject.Find("Services").GetComponentInChildren<GameManager>();
-    }
-
-	void Start () {
-	
-	}
-	
-	void Update () {
-
-    }
     #endregion
 
     #region Private
     PheromoneType m_PheromoneType;
     Bug m_Dropper = null;
     Vector3 m_Target = new Vector3();
+    float m_InstanciationTime = 0f;
     #endregion
 }

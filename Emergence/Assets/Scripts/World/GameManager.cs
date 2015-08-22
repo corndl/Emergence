@@ -13,6 +13,8 @@ public class GameManager : MonoBehaviour
     public GameObject PheromonePrefab = null;
     [SerializeField]
     CameraController m_Player = null;
+    [SerializeField]
+    WorldMatrix m_Matrix = null;
     #endregion
 
     #region API
@@ -40,6 +42,13 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    public WorldMatrix Matrix
+    {
+        get
+        {
+            return m_Matrix;
+        }
+    }
     public void StartGame()
     {
         m_BugManager.CreateNewBugs(m_BugsCount);
