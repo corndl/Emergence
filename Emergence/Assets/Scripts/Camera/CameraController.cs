@@ -6,6 +6,11 @@ using UnityEditor;
 public class CameraController : MonoBehaviour {
 
     #region Properties
+
+    [SerializeField]
+    private float _Speed = 20f;
+    [SerializeField]
+    private float _SpeedRotation = 5f;
     /// <summary>
     /// gameObject contenant la camera
     /// </summary>
@@ -62,10 +67,11 @@ public class CameraController : MonoBehaviour {
     /// <summary>
     /// Déplace la camera de [x,z]
     /// </summary>
-    /// <param name="offset">[x,z]</param>
-    public void Move(Vector2 offset)
+    /// <param name="axis">[x,z]</param>
+    public void Move(Vector2 axis)
     {
-        SetPosition(_position + offset);
+
+        SetPosition(_position + Time.deltaTime * _Speed *  axis);
     }
 
     /// <summary>
@@ -79,6 +85,14 @@ public class CameraController : MonoBehaviour {
                 Mathf.Clamp(newInclinaison.x, -_maxInclinaison.x, _maxInclinaison.x),
                 Mathf.Clamp(newInclinaison.y, -_maxInclinaison.y, _maxInclinaison.y));
         _inclinaison = tempInclinaison;
+    }
+    /// <summary>
+    /// Incline la camera selon les angle [x,z]
+    /// </summary>
+    /// <param name="axis">[x°,z°]</param>
+    public void Rotate(Vector2 axis)
+    {
+        Incline(_inclinaison + Time.deltaTime * _SpeedRotation * axis);
     }
     #endregion
 
