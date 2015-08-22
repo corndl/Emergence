@@ -22,6 +22,14 @@ public class GameManager : MonoBehaviour
         } 
     }
 
+    public BugManager BugManager
+    {
+        get
+        {
+            return m_BugManager;
+        }
+    }
+
     public void StartGame()
     {
         m_BugManager.CreateNewBugs(m_BugsCount);

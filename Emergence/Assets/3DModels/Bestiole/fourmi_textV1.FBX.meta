@@ -1,12 +1,10 @@
 fileFormatVersion: 2
-guid: 0ad626f751018be48948be442f2db13f
-timeCreated: 1440242500
-licenseType: Free
+guid: 9677737a0171e3c4d95e3ff573b811c3
 ModelImporter:
   serializedVersion: 18
   fileIDToRecycleName:
-    100000: abdomen BU001
-    100002: //RootNode
+    100000: //RootNode
+    100002: Line001
     100004: Plane001
     100006: Plane005
     100008: Plane006
@@ -15,9 +13,8 @@ ModelImporter:
     100014: Plane009
     100016: Sphere001
     100018: Sphere002
-    100020: Line001
-    400000: abdomen BU001
-    400002: //RootNode
+    400000: //RootNode
+    400002: Line001
     400004: Plane001
     400006: Plane005
     400008: Plane006
@@ -26,8 +23,7 @@ ModelImporter:
     400014: Plane009
     400016: Sphere001
     400018: Sphere002
-    400020: Line001
-    2300000: abdomen BU001
+    2300000: Line001
     2300002: Plane001
     2300004: Plane005
     2300006: Plane006
@@ -36,8 +32,7 @@ ModelImporter:
     2300012: Plane009
     2300014: Sphere001
     2300016: Sphere002
-    2300018: Line001
-    3300000: abdomen BU001
+    3300000: Line001
     3300002: Plane001
     3300004: Plane005
     3300006: Plane006
@@ -46,17 +41,16 @@ ModelImporter:
     3300012: Plane009
     3300014: Sphere001
     3300016: Sphere002
-    3300018: Line001
     4300000: Plane001
     4300002: Plane005
-    4300004: abdomen BU001
-    4300006: Sphere001
-    4300008: Sphere002
-    4300010: Plane006
-    4300012: Plane007
-    4300014: Plane008
-    4300016: Plane009
-    4300018: Line001
+    4300004: Sphere001
+    4300006: Sphere002
+    4300008: Plane006
+    4300010: Plane007
+    4300012: Plane008
+    4300014: Plane009
+    4300016: Line001
+    9500000: //RootNode
   materials:
     importMaterials: 1
     materialName: 0
@@ -114,7 +108,7 @@ ModelImporter:
     feetSpacing: 0
     rootMotionBoneName: 
   lastHumanDescriptionAvatarSource: {instanceID: 0}
-  animationType: 0
+  animationType: 2
   additionalBone: 0
   userData: 
   assetBundleName: 

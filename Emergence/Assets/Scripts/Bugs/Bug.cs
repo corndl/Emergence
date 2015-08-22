@@ -48,6 +48,8 @@ public class Bug : MonoBehaviour
 	}
 	
 	void FixedUpdate () {
+        OutOfBonds();
+
         switch (m_Behaviour)
         {
             case (BugBehaviour.Searching):
@@ -127,6 +129,14 @@ public class Bug : MonoBehaviour
         Gathering,
         Mating,
         Fleeing
+    }
+
+    void OutOfBonds()
+    {
+        if (gameObject.transform.position.y < -10)
+        {
+            m_GameManager.BugManager.DestroyBug(this);
+        }
     }
 
     #region Behaviours
