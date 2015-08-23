@@ -12,9 +12,11 @@ public class Bug : MonoBehaviour
     [SerializeField]
     public IntGene TimeTilReadyForMating = new IntGene(30, 5, 120, 0.3f);
     [SerializeField]
+    public IntGene FoodHPPerByte = new IntGene(5, 1, 10, 0.5f);
+    [SerializeField]
     int m_EnvironmentLayer = 9;
     [SerializeField]
-    int m_PheromoneLayer = 10;
+    int m_FoodLayer = 11;
     [SerializeField]
     List<Pheromone> m_Pheromones = new List<Pheromone>();
     [SerializeField]
@@ -84,6 +86,12 @@ public class Bug : MonoBehaviour
         {
             m_State = BugState.OnGround;
         }
+        if (coll.gameObject.layer == m_FoodLayer)
+        {
+            Food food = coll.gameObject.GetComponent<Food>();
+            food.Eat(FoodHPPerByte.value);
+            DropPheromone(Pheromone.PheromoneType.Food, coll.gameObject.transform.position);
+        }
     }
 
     void OnCollisionExit(Collision coll)
@@ -91,6 +99,13 @@ public class Bug : MonoBehaviour
         if (coll.gameObject.layer == m_EnvironmentLayer)
         {
             m_State = BugState.MidAir;
+        }
+        if (coll.gameObject.layer == m_FoodLayer)
+        {
+            if (m_Behaviour == BugBehaviour.Gathering) 
+            {
+                m_Behaviour = BugBehaviour.Searching;
+            }
         }
     }
     #endregion
@@ -159,9 +174,6 @@ public class Bug : MonoBehaviour
             m_TimeLastDecision = Time.time;            
             m_Rigidbody.velocity = Vector3.zero;
 
-            if (m_Behaviour == BugBehaviour.Mating)
-                Debug.Log("FFS MATING");
-
             switch (m_Behaviour)
             {
                 case (BugBehaviour.Searching):
@@ -189,6 +201,11 @@ public class Bug : MonoBehaviour
         m_Rigidbody.velocity = force;
     }
 
+    void Gather()
+    {
+
+    }
+
     void CanMate()
     {
         if (Time.time - TimeTilReadyForMating.value > m_InstanciationTime)
@@ -210,6 +227,18 @@ public class Bug : MonoBehaviour
             Mate();
             m_Behaviour = BugBehaviour.Searching;
         }
+    }
+
+    void Mate()
+    {
+        // Can only mate once
+        if (m_HasMated)
+        {
+            return;
+        }
+        m_GameManager.BugManager.CreateNewBug(this, m_Mate);
+        m_Mate = null;
+        m_HasMated = true;
     }
 
     void Search()
@@ -299,17 +328,5 @@ public class Bug : MonoBehaviour
         }
     }
     #endregion
-
-    void Mate()
-    {
-        // Can only mate once
-        if (m_HasMated)
-        {
-            return;
-        }
-        m_GameManager.BugManager.CreateNewBug(this, m_Mate);
-        m_Mate = null;
-        m_HasMated = true;
-    }
     #endregion
 }

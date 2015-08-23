@@ -1,6 +1,8 @@
 ﻿using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEngine.Events;
+using System;
 
 public class BugManager : MonoBehaviour
 {
@@ -49,6 +51,7 @@ public class BugManager : MonoBehaviour
         // Genetics
         bug.Speed = dad.Speed.intChildren();
         bug.TimeTilReadyForMating = mom.TimeTilReadyForMating.intChildren();
+        bug.FoodHPPerByte = dad.FoodHPPerByte.intChildren();
     }
 
     /// <summary>
@@ -66,6 +69,7 @@ public class BugManager : MonoBehaviour
         // Genetics
         bug.Speed = parent.Speed.intChildren();
         bug.TimeTilReadyForMating = parent.TimeTilReadyForMating.intChildren();
+        bug.FoodHPPerByte = parent.FoodHPPerByte.intChildren();
     }
 
     /// <summary>
@@ -95,6 +99,12 @@ public class BugManager : MonoBehaviour
             return;
         }
 
+        m_DeadBugs.Add(bug);
+        m_BugList.Remove(bug);
+
+        onBugsAlive.Invoke(m_BugList.Count.ToString());
+        onKilledBugs.Invoke(m_DeadBugs.Count.ToString());
+
         bug.KillBug();
     }
 
@@ -109,10 +119,20 @@ public class BugManager : MonoBehaviour
             return;
         }
 
+        m_DeadBugs.Remove(bug);
         m_BugList.Remove(bug);
         m_BugsParent.name = "Bugs (" + m_BugList.Count + ")";
         bug.DestroyBug();
     }
+    #endregion
+
+    #region Events
+    [Serializable]
+    public class StringEvent : UnityEvent<string> { }
+    [SerializeField]
+    public StringEvent onKilledBugs = new StringEvent();
+    [SerializeField]
+    public StringEvent onBugsAlive = new StringEvent();
     #endregion
 
     #region Unity
@@ -135,6 +155,7 @@ public class BugManager : MonoBehaviour
     #region Private
     private static BugManager s_Instance = null;
     GameObject m_BugsParent = null;
+    List<Bug> m_DeadBugs = new List<Bug>();
 
     /// <summary>
     /// Instantiate a bug and add it to the bug list.
@@ -154,6 +175,7 @@ public class BugManager : MonoBehaviour
         m_BugList.Add(newBug);
 
         m_BugsParent.name = "Bugs (" + m_BugList.Count + ")";
+        onBugsAlive.Invoke(m_BugList.Count.ToString());
 
         newBug.TimeTilReadyForMating = newBug.TimeTilReadyForMating.intChildren();
 
