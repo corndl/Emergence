@@ -258,6 +258,8 @@ public class Bug : MonoBehaviour
         Vector3 position = gameObject.transform.position;
 
         m_TargetPosition = new Vector3(position.x - playerPosition.x, position.y, position.z - playerPosition.z);
+
+        m_TargetPosition = 2 * position - playerPosition;
     }
     #endregion
 
@@ -330,6 +332,13 @@ public class Bug : MonoBehaviour
         {
             m_Behaviour = BugBehaviour.Fleeing;
             DropPheromone(Pheromone.PheromoneType.Ennemy, playerPosition);
+        }
+        else
+        {
+            if (m_Behaviour == BugBehaviour.Fleeing)
+            {
+                m_Behaviour = BugBehaviour.Searching;
+            }
         }
     }
     #endregion
