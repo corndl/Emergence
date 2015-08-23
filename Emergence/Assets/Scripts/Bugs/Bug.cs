@@ -58,6 +58,7 @@ public class Bug : MonoBehaviour
         IsDead = true;
         AudioSource audioSource = gameObject.GetComponent<AudioSource>();
         audioSource.Play();
+		GetComponent<Animator>().SetBool("IsDead",true);
     }
 
     /// <summary>
