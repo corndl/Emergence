@@ -167,6 +167,12 @@ public class Arme : MonoBehaviour {
 
     [SerializeField] protected Color CibleColor=Color.green;
 
+    [SerializeField]
+    protected AudioClip _sonKill;
+
+    [SerializeField]
+    protected AudioClip _sonNoKill;
+
     #endregion
 
     #region API
@@ -204,11 +210,13 @@ public class Arme : MonoBehaviour {
     // Use this for initialization
     protected virtual void Start()
     {
+        _AudioSource = GetComponent<AudioSource>();
         _colliders = GetComponentsInChildren<Collider>();
         _zeroTransformVector = new TransformVector();
         _initialTransformVector = new TransformVector(transform.localPosition,transform.localRotation);
         _transformCurve = new TransformCurve(_initialTransformVector, Time.time, _zeroTransformVector, _initialTransformVector, Time.time, _zeroTransformVector);
         BugManager = FindObjectOfType<BugManager>();
+
     }
 
     // Update is called once per frame
@@ -230,6 +238,8 @@ public class Arme : MonoBehaviour {
     protected float _lastAttackTime = 0;
     protected GameObject TempCible;
     protected BugManager BugManager;
+    protected AudioSource _AudioSource;
+    protected int _nbKill = 0;
     protected virtual void _StopAttack()
     {
         if (_isAttacking)
@@ -243,6 +253,7 @@ public class Arme : MonoBehaviour {
             _lastAttackTime = Time.time;
         }
         _isAttacking = false;
+        _nbKill = 0;
     }
     #endregion
 }

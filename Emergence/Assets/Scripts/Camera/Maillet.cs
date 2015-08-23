@@ -40,6 +40,7 @@ public class Maillet : Arme {
        Bug bug = collider.GetComponent<Bug>() ?? collider.GetComponentInChildren<Bug>() ?? collider.GetComponentInParent<Bug>();
         if (bug != null)
         {
+            _nbKill ++;
             BugManager.KillBug(bug);
             Debug.Log("KillingSpree !!! : "+ bug);
         }
@@ -56,6 +57,10 @@ public class Maillet : Arme {
         GameObject smock = Instantiate(_particulePrefab,transform.position,transform.rotation) as GameObject;
         smock.GetComponent<ParticleSystem>().Play();
         Destroy(smock,1f);
+        
+        _AudioSource.clip = _nbKill > 0 ? _sonKill : _sonNoKill;
+        _AudioSource.Play();
+        
     }
     #endregion
 }

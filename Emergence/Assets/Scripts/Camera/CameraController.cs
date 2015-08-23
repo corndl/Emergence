@@ -131,9 +131,11 @@ public class CameraController : MonoBehaviour {
         Vector3 repere = new Vector3(_position.x,HIGH,_position.y);
         Ray ray = new Ray(repere,Vector3.down);
         RaycastHit hit;
-        int environment = 1<<LayerMask.NameToLayer("Environment");
+        int environment = 1 << LayerMask.NameToLayer("Environment");
+        int foods = 1 << LayerMask.NameToLayer("Foods");
+
         //int withoutBugs = 1 << environment;
-        if (Physics.Raycast(ray, out hit, Mathf.Infinity, environment))
+        if (Physics.Raycast(ray, out hit, Mathf.Infinity, environment | foods))
         {
             Vector3 target = hit.point;
             transform.position = target;
