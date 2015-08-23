@@ -40,12 +40,15 @@ public class Maillet : Arme {
         _StopAttack();
     }
     #endregion
-
+    
     #region Private
 
     protected override void _StopAttack()
     {
         base._StopAttack();
+        GameObject smock = Instantiate(_particulePrefab,transform.position,transform.rotation) as GameObject;
+        smock.GetComponent<ParticleSystem>().Play();
+        Destroy(smock,1f);
     }
     #endregion
 }

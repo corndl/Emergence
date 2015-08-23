@@ -162,6 +162,8 @@ public class Arme : MonoBehaviour {
     [SerializeField] 
     protected float _cooldown = 0.2f;
 
+    [SerializeField] protected GameObject _particulePrefab;
+
     [SerializeField] protected Color CibleColor=Color.green;
 
     #endregion
@@ -224,7 +226,7 @@ public class Arme : MonoBehaviour {
     private TransformCurve _transformCurve;
     private bool _isAttacking = false;
     private float _lastAttackTime = 0;
-    private GameObject _tempCible;
+    protected GameObject _tempCible;
     protected virtual void _StopAttack()
     {
         if (_isAttacking)

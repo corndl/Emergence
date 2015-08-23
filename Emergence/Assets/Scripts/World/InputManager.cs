@@ -49,9 +49,9 @@ public class InputManager : MonoBehaviour {
         if(axisIncline.magnitude>0.1)
         _Player.Incline(45 * axisIncline);
         _Player.Rotate(axisInclinaison);
-        if(Input.GetButtonDown("Fire1")||Input.GetAxis("Fire1")>0)
+        if(Input.GetButton("Fire1")||Input.GetAxis("Fire1")>0)
             _Arme1.Attack();
-        if(Input.GetButtonDown("Fire2")||Input.GetAxis("Fire2")>0)
+        if(Input.GetButton("Fire2")||Input.GetAxis("Fire2")>0)
             _Arme2.Attack();
 
     }
