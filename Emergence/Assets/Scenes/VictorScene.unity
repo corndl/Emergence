@@ -314,6 +314,18 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
+--- !u!1 &743720449 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 106364, guid: f32da37c492c3224a8f8acb961cb6abf, type: 2}
+  m_PrefabInternal: {fileID: 941552806}
+--- !u!45 &743720450
+Skybox:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 743720449}
+  m_Enabled: 1
+  m_CustomSkybox: {fileID: 2100000, guid: 4259f63bb6e35b2428a38fa8ffd524ff, type: 2}
 --- !u!1 &831849974
 GameObject:
   m_ObjectHideFlags: 0
@@ -405,7 +417,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 445538, guid: f32da37c492c3224a8f8acb961cb6abf, type: 2}
       propertyPath: m_RootOrder
-      value: 7
+      value: 6
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: f32da37c492c3224a8f8acb961cb6abf, type: 2}
@@ -469,7 +481,7 @@ MonoBehaviour:
   m_BugManager: {fileID: 831849976}
   m_BugsCount: 100
   m_MaxBugsCount: 500
-  PheromonePrefab: {fileID: 145752, guid: 7bfe406993b92e8418ddfba00a522c72, type: 2}
+  FoodPrefab: {fileID: 0}
   m_Player: {fileID: 0}
   m_Matrix: {fileID: 0}
   onStartGame:
