@@ -13,6 +13,8 @@ public class BugManager : MonoBehaviour
     GameObject m_BugPrefab = null;
     [SerializeField]
     Vector3 m_InitialSpawnPoint = Vector3.zero;
+    [SerializeField]
+    GameManager m_GameManager = null;
     #endregion
 
     #region API
@@ -48,6 +50,11 @@ public class BugManager : MonoBehaviour
         }
 
         Bug bug = InstantiateBug();
+        if (bug == null)
+        {
+            return;
+        }
+
         // Genetics
         bug.Speed = dad.Speed.intChildren();
         bug.TimeTilReadyForMating = mom.TimeTilReadyForMating.intChildren();
@@ -163,8 +170,9 @@ public class BugManager : MonoBehaviour
     /// <returns></returns>
     Bug InstantiateBug(Vector3 SpawnPoint)
     {
-        if (m_BugList.Count >= 500)
+        if (m_BugList.Count >= m_GameManager.MaxBugsCount)
         {
+            m_GameManager.EndGame();
             return null;
         }
         GameObject bugGameobject = Instantiate(m_BugPrefab);

@@ -28,7 +28,7 @@ public class Bug : MonoBehaviour
     #endregion
 
     #region API
-    public IntGene Speed 
+    public IntGene Speed
     {
         get
         {
@@ -66,12 +66,14 @@ public class Bug : MonoBehaviour
         m_InstanciationTime = Time.time;
     }
 
-	void Start () {
+    void Start()
+    {
         m_TargetPosition = gameObject.transform.position;
         m_Rigidbody = GetComponent<Rigidbody>();
-	}
-	
-	void FixedUpdate () {
+    }
+
+    void FixedUpdate()
+    {
         OutOfBonds();
         if (m_State == BugState.Dead)
         {
@@ -89,8 +91,11 @@ public class Bug : MonoBehaviour
         if (coll.gameObject.layer == m_FoodLayer)
         {
             Food food = coll.gameObject.GetComponent<Food>();
-            food.Eat(FoodHPPerByte.value);
-            DropPheromone(Pheromone.PheromoneType.Food, coll.gameObject.transform.position);
+            if (food.HP > 0)
+            {
+                food.Eat(FoodHPPerByte.value);
+                DropPheromone(Pheromone.PheromoneType.Food, coll.gameObject.transform.position);
+            }
         }
     }
 
@@ -102,7 +107,7 @@ public class Bug : MonoBehaviour
         }
         if (coll.gameObject.layer == m_FoodLayer)
         {
-            if (m_Behaviour == BugBehaviour.Gathering) 
+            if (m_Behaviour == BugBehaviour.Gathering)
             {
                 m_Behaviour = BugBehaviour.Searching;
             }
@@ -171,7 +176,7 @@ public class Bug : MonoBehaviour
         // Choose random direction for now
         if (Time.time - m_TimeLastDecision > 0.1f)
         {
-            m_TimeLastDecision = Time.time;            
+            m_TimeLastDecision = Time.time;
             m_Rigidbody.velocity = Vector3.zero;
 
             switch (m_Behaviour)

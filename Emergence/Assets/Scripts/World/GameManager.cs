@@ -10,6 +10,8 @@ public class GameManager : MonoBehaviour
     [SerializeField]
     int m_BugsCount = 0;
     [SerializeField]
+    int m_MaxBugsCount = 500;
+    [SerializeField]
     public GameObject PheromonePrefab = null;
     [SerializeField]
     CameraController m_Player = null;
@@ -18,6 +20,13 @@ public class GameManager : MonoBehaviour
     #endregion
 
     #region API
+    public int MaxBugsCount
+    {
+        get
+        {
+            return m_MaxBugsCount;
+        }
+    }
     public static GameManager Instance 
     { 
         get 
@@ -52,6 +61,12 @@ public class GameManager : MonoBehaviour
     public void StartGame()
     {
         m_BugManager.CreateNewBugs(m_BugsCount);
+    }
+
+    public void EndGame()
+    {
+        Time.timeScale = 0;
+        // Show gameover
     }
     #endregion
 

@@ -14,6 +14,14 @@ public class Food : MonoBehaviour
     #endregion
 
     #region API
+    public int HP
+    {
+        get
+        {
+            return m_HP;
+        }
+    }
+
     public void Eat(int hp)
     {
         m_HP -= hp;
