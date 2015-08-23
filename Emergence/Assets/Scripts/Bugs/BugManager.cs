@@ -113,6 +113,11 @@ public class BugManager : MonoBehaviour
         onKilledBugs.Invoke(m_DeadBugs.Count.ToString());
 
         bug.KillBug();
+
+        if (m_BugList.Count == 0)
+        {
+            m_GameManager.EndGame();
+        }
     }
 
     /// <summary>
@@ -129,7 +134,17 @@ public class BugManager : MonoBehaviour
         m_DeadBugs.Remove(bug);
         m_BugList.Remove(bug);
         m_BugsParent.name = "Bugs (" + m_BugList.Count + ")";
+        onBugsAlive.Invoke(m_BugList.Count.ToString());
         bug.DestroyBug();
+    }
+
+    public void DestroyAllBugs()
+    {
+        List<Bug> tmp = m_BugList;
+        foreach (Bug b in tmp)
+        {
+            b.DestroyBug();
+        }
     }
     #endregion
 

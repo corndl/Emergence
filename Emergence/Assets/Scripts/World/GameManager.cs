@@ -1,4 +1,6 @@
 ﻿using UnityEngine;
+using UnityEngine.Events;
+using System;
 using System.Collections;
 
 public class GameManager : MonoBehaviour
@@ -17,6 +19,13 @@ public class GameManager : MonoBehaviour
     CameraController m_Player = null;
     [SerializeField]
     WorldMatrix m_Matrix = null;
+    #endregion
+
+    #region Events
+    [SerializeField]
+    public UnityEvent onStartGame = new UnityEvent();
+    [SerializeField]
+    public UnityEvent onEndGame = new UnityEvent();
     #endregion
 
     #region API
@@ -60,13 +69,15 @@ public class GameManager : MonoBehaviour
     }
     public void StartGame()
     {
+        onStartGame.Invoke();
         m_BugManager.CreateNewBugs(m_BugsCount);
     }
 
     public void EndGame()
     {
         Time.timeScale = 0;
-        // Show gameover
+        m_BugManager.DestroyAllBugs();
+        onEndGame.Invoke();
     }
     #endregion
 
