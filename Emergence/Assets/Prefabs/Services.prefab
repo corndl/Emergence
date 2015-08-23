@@ -1517,8 +1517,8 @@ MonoBehaviour:
   _cooldown: .300000012
   _particulePrefab: {fileID: 118598, guid: 02e04df30451bfc4ca3c97b577d109cc, type: 2}
   CibleColor: {r: 1, g: 0, b: 0, a: 1}
-  _sonKill: {fileID: 0}
-  _sonNoKill: {fileID: 0}
+  _sonKill: {fileID: 8300000, guid: 16ac38dab83fe3144a900b12614ac8d6, type: 3}
+  _sonNoKill: {fileID: 8300000, guid: dbf76fba04834f54ebf847e1a430d425, type: 3}
 --- !u!114 &11436770
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1726,8 +1726,8 @@ MonoBehaviour:
   _cooldown: .300000012
   _particulePrefab: {fileID: 118598, guid: 02e04df30451bfc4ca3c97b577d109cc, type: 2}
   CibleColor: {r: 0, g: 1, b: 0, a: 1}
-  _sonKill: {fileID: 0}
-  _sonNoKill: {fileID: 0}
+  _sonKill: {fileID: 8300000, guid: 16ac38dab83fe3144a900b12614ac8d6, type: 3}
+  _sonNoKill: {fileID: 8300000, guid: dbf76fba04834f54ebf847e1a430d425, type: 3}
 --- !u!114 &11460326
 MonoBehaviour:
   m_ObjectHideFlags: 1
