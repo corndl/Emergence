@@ -59,6 +59,8 @@ public class BugManager : MonoBehaviour
         bug.Speed = dad.Speed.intChildren();
         bug.TimeTilReadyForMating = mom.TimeTilReadyForMating.intChildren();
         bug.FoodHPPerByte = dad.FoodHPPerByte.intChildren();
+        bug.Size = mom.Size.floatChildren();
+        bug.RangePlayerDetection = dad.RangePlayerDetection.floatChildren();
     }
 
     /// <summary>
@@ -77,6 +79,8 @@ public class BugManager : MonoBehaviour
         bug.Speed = parent.Speed.intChildren();
         bug.TimeTilReadyForMating = parent.TimeTilReadyForMating.intChildren();
         bug.FoodHPPerByte = parent.FoodHPPerByte.intChildren();
+        bug.Size = parent.Size.floatChildren();
+        bug.RangePlayerDetection = parent.RangePlayerDetection.floatChildren();
     }
 
     /// <summary>
@@ -163,15 +167,17 @@ public class BugManager : MonoBehaviour
         m_BugsParent = new GameObject("Bugs");
     }
 
-	void Start () {
-        
-	}
-	
-	void Update () {
+    void Start()
+    {
 
     }
 
-    
+    void Update()
+    {
+
+    }
+
+
     #endregion
 
     #region Private
@@ -201,6 +207,8 @@ public class BugManager : MonoBehaviour
         onBugsAlive.Invoke(m_BugList.Count.ToString());
 
         newBug.TimeTilReadyForMating = newBug.TimeTilReadyForMating.intChildren();
+        newBug.Size = newBug.Size.floatChildren();
+        newBug.RangePlayerDetection = newBug.RangePlayerDetection.floatChildren();
 
         return newBug;
     }
