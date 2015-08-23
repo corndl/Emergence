@@ -301,6 +301,10 @@ public class Bug : MonoBehaviour
             case (Pheromone.PheromoneType.Mating):
                 if (pheromone.Dropper != this)
                 {
+                    if (Time.time - TimeTilReadyForMating.value < m_InstanciationTime)
+                    {
+                        return;
+                    }
                     m_Behaviour = BugBehaviour.SeekingMate;
                     m_TargetPosition = pheromone.Target;
                     m_Mate = pheromone.Dropper;
