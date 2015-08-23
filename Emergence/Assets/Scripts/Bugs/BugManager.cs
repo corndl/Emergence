@@ -105,7 +105,7 @@ public class BugManager : MonoBehaviour
     /// <param name="bug"></param>
     public void KillBug(Bug bug)
     {
-        if (bug == null)
+        if (bug == null || bug.IsDead)
         {
             return;
         }

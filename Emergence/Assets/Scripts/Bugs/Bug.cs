@@ -30,6 +30,8 @@ public class Bug : MonoBehaviour
     #endregion
 
     #region API
+    public bool IsDead = false;
+
     public IntGene Speed
     {
         get
@@ -49,6 +51,7 @@ public class Bug : MonoBehaviour
     {
         m_Rigidbody.velocity = Vector3.zero;
         m_State = BugState.Dead;
+        IsDead = true;
     }
 
     /// <summary>
