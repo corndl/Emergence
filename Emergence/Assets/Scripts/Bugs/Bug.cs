@@ -90,6 +90,7 @@ public class Bug : MonoBehaviour
         {
             Food food = coll.gameObject.GetComponent<Food>();
             food.Eat(FoodHPPerByte.value);
+            DropPheromone(Pheromone.PheromoneType.Food, coll.gameObject.transform.position);
         }
     }
 
@@ -98,6 +99,13 @@ public class Bug : MonoBehaviour
         if (coll.gameObject.layer == m_EnvironmentLayer)
         {
             m_State = BugState.MidAir;
+        }
+        if (coll.gameObject.layer == m_FoodLayer)
+        {
+            if (m_Behaviour == BugBehaviour.Gathering) 
+            {
+                m_Behaviour = BugBehaviour.Searching;
+            }
         }
     }
     #endregion
@@ -193,6 +201,11 @@ public class Bug : MonoBehaviour
         m_Rigidbody.velocity = force;
     }
 
+    void Gather()
+    {
+
+    }
+
     void CanMate()
     {
         if (Time.time - TimeTilReadyForMating.value > m_InstanciationTime)
@@ -214,6 +227,18 @@ public class Bug : MonoBehaviour
             Mate();
             m_Behaviour = BugBehaviour.Searching;
         }
+    }
+
+    void Mate()
+    {
+        // Can only mate once
+        if (m_HasMated)
+        {
+            return;
+        }
+        m_GameManager.BugManager.CreateNewBug(this, m_Mate);
+        m_Mate = null;
+        m_HasMated = true;
     }
 
     void Search()
@@ -303,17 +328,5 @@ public class Bug : MonoBehaviour
         }
     }
     #endregion
-
-    void Mate()
-    {
-        // Can only mate once
-        if (m_HasMated)
-        {
-            return;
-        }
-        m_GameManager.BugManager.CreateNewBug(this, m_Mate);
-        m_Mate = null;
-        m_HasMated = true;
-    }
     #endregion
 }

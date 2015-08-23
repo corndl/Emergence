@@ -638,7 +638,7 @@ MonoBehaviour:
   m_Speed: 100
   m_SpeedGene:
     type: 
-    value: 50
+    value: 20
     min: 10
     max: 200
     mutationChance: .100000001
@@ -648,8 +648,14 @@ MonoBehaviour:
     min: 5
     max: 120
     mutationChance: .300000012
+  FoodHPPerByte:
+    type: int
+    value: 5
+    min: 1
+    max: 10
+    mutationChance: .5
   m_EnvironmentLayer: 9
-  m_PheromoneLayer: 10
+  m_FoodLayer: 11
   m_GameManager: {fileID: 0}
   m_WorldMatrix: {fileID: 0}
   m_MinimumDistanceFleeing: 20
@@ -699,7 +705,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: m_SpeedGene.value
-      value: 50
+      value: 20
       objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: m_SpeedGene.min
