@@ -14,6 +14,10 @@ public class Bug : MonoBehaviour
     [SerializeField]
     public IntGene FoodHPPerByte = new IntGene(5, 1, 10, 0.5f);
     [SerializeField]
+    public FloatGene Size = new FloatGene(1, 5, 0.3f);
+    [SerializeField]
+    public FloatGene RangePlayerDetection = new FloatGene(1f, 20f, 0.7f);
+    [SerializeField]
     int m_EnvironmentLayer = 9;
     [SerializeField]
     int m_FoodLayer = 11;
@@ -23,8 +27,6 @@ public class Bug : MonoBehaviour
     GameManager m_GameManager = null;
     [SerializeField]
     WorldMatrix m_WorldMatrix;
-    [SerializeField]
-    float m_MinimumDistanceFleeing = 20f;
     #endregion
 
     #region API
@@ -70,6 +72,7 @@ public class Bug : MonoBehaviour
     {
         m_TargetPosition = gameObject.transform.position;
         m_Rigidbody = GetComponent<Rigidbody>();
+        gameObject.transform.localScale *= Size.value;
     }
 
     void FixedUpdate()
@@ -332,7 +335,7 @@ public class Bug : MonoBehaviour
         Vector2 bugXZ = new Vector2(gameObject.transform.position.x, gameObject.transform.position.z);
 
         float distance = Mathf.Sqrt((playerXZ - bugXZ).sqrMagnitude);
-        if (distance < m_MinimumDistanceFleeing)
+        if (distance < RangePlayerDetection.value)
         {
             m_Behaviour = BugBehaviour.Fleeing;
             DropPheromone(Pheromone.PheromoneType.Ennemy, playerPosition);
