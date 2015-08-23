@@ -49,7 +49,7 @@ public class BugManager : MonoBehaviour
             return;
         }
 
-        Bug bug = InstantiateBug();
+        Bug bug = InstantiateBug(mom.gameObject.transform.position);
         if (bug == null)
         {
             return;
@@ -67,7 +67,7 @@ public class BugManager : MonoBehaviour
     /// <param name="parent"></param>
     public void CreateNewBug(Bug parent)
     {
-        Bug bug = InstantiateBug();
+        Bug bug = InstantiateBug(parent.gameObject.transform.position);
         if (parent == null)
         {
             return;
