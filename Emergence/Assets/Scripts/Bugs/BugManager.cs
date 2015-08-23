@@ -1,6 +1,8 @@
 ﻿using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEngine.Events;
+using System;
 
 public class BugManager : MonoBehaviour
 {
@@ -99,6 +101,10 @@ public class BugManager : MonoBehaviour
 
         m_DeadBugs.Add(bug);
         m_BugList.Remove(bug);
+
+        onBugsAlive.Invoke(m_BugList.Count.ToString());
+        onKilledBugs.Invoke(m_DeadBugs.Count.ToString());
+
         bug.KillBug();
     }
 
@@ -118,6 +124,15 @@ public class BugManager : MonoBehaviour
         m_BugsParent.name = "Bugs (" + m_BugList.Count + ")";
         bug.DestroyBug();
     }
+    #endregion
+
+    #region Events
+    [Serializable]
+    public class StringEvent : UnityEvent<string> { }
+    [SerializeField]
+    public StringEvent onKilledBugs = new StringEvent();
+    [SerializeField]
+    public StringEvent onBugsAlive = new StringEvent();
     #endregion
 
     #region Unity
@@ -160,6 +175,7 @@ public class BugManager : MonoBehaviour
         m_BugList.Add(newBug);
 
         m_BugsParent.name = "Bugs (" + m_BugList.Count + ")";
+        onBugsAlive.Invoke(m_BugList.Count.ToString());
 
         newBug.TimeTilReadyForMating = newBug.TimeTilReadyForMating.intChildren();
 

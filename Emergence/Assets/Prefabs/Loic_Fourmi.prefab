@@ -10,7 +10,7 @@ GameObject:
   - 4: {fileID: 426336}
   - 33: {fileID: 3395720}
   - 23: {fileID: 2360254}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Sphere001
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -27,7 +27,7 @@ GameObject:
   - 4: {fileID: 414812}
   - 33: {fileID: 3380078}
   - 23: {fileID: 2307692}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Line001
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -44,7 +44,7 @@ GameObject:
   - 4: {fileID: 406814}
   - 33: {fileID: 3360436}
   - 23: {fileID: 2347954}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Sphere002
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -61,7 +61,7 @@ GameObject:
   - 4: {fileID: 438812}
   - 33: {fileID: 3311374}
   - 23: {fileID: 2302278}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Plane007
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -80,7 +80,7 @@ GameObject:
   - 65: {fileID: 6541328}
   - 54: {fileID: 5496586}
   - 114: {fileID: 11454686}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Loic_Fourmi
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -97,7 +97,7 @@ GameObject:
   - 4: {fileID: 465508}
   - 33: {fileID: 3306058}
   - 23: {fileID: 2356138}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Plane001
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -114,7 +114,7 @@ GameObject:
   - 4: {fileID: 413370}
   - 33: {fileID: 3351894}
   - 23: {fileID: 2353752}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Plane006
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -131,7 +131,7 @@ GameObject:
   - 4: {fileID: 431198}
   - 33: {fileID: 3360852}
   - 23: {fileID: 2356440}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Plane008
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -148,7 +148,7 @@ GameObject:
   - 4: {fileID: 441320}
   - 33: {fileID: 3306372}
   - 23: {fileID: 2366470}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Plane009
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -165,7 +165,7 @@ GameObject:
   - 4: {fileID: 426578}
   - 33: {fileID: 3379236}
   - 23: {fileID: 2363806}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Plane005
   m_TagString: Untagged
   m_Icon: {fileID: 0}
