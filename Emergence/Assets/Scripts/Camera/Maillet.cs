@@ -4,8 +4,6 @@ using System.Collections;
 public class Maillet : Arme {
 
     #region Properties
-
-    [SerializeField] private BugManager bm;
     #endregion
 
     #region API
@@ -24,20 +22,29 @@ public class Maillet : Arme {
     protected override void Start()
     {
         base.Start();
+        
     }
 
     // Update is called once per frame
     protected  override void Update()
     {
         base.Update();
+            
     }
 
     void OnTriggerEnter(Collider collider)
     {
-       Bug bug = collider.GetComponentInChildren<Bug>();
-        if(bug != null)
-            bm.KillBug(bug);
-        _StopAttack();
+        if (!_isAttacking)
+            return;
+
+       Bug bug = collider.GetComponent<Bug>() ?? collider.GetComponentInChildren<Bug>() ?? collider.GetComponentInParent<Bug>();
+        if (bug != null)
+        {
+            BugManager.KillBug(bug);
+            Debug.Log("KillingSpree !!! : "+ bug);
+        }
+        if(collider.gameObject.layer == 9)
+            _StopAttack();
     }
     #endregion
     

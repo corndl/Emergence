@@ -317,7 +317,7 @@ Transform:
   m_GameObject: {fileID: 131544}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 2, y: 2, z: 2}
   m_Children:
   - {fileID: 412266}
   - {fileID: 480034}
@@ -677,7 +677,6 @@ MonoBehaviour:
   _cooldown: .300000012
   _particulePrefab: {fileID: 118598, guid: 02e04df30451bfc4ca3c97b577d109cc, type: 2}
   CibleColor: {r: 0, g: 1, b: 0, a: 1}
-  bm: {fileID: 0}
 --- !u!114 &11449092
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -708,7 +707,6 @@ MonoBehaviour:
   _cooldown: .300000012
   _particulePrefab: {fileID: 118598, guid: 02e04df30451bfc4ca3c97b577d109cc, type: 2}
   CibleColor: {r: 1, g: 0, b: 0, a: 1}
-  bm: {fileID: 0}
 --- !u!124 &12458226
 Behaviour:
   m_ObjectHideFlags: 1

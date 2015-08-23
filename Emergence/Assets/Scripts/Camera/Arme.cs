@@ -25,6 +25,7 @@ public class Arme : MonoBehaviour {
 
         public Transform GetTransform(Transform trans)
         {
+            
             trans.position = Position;
             trans.rotation = Rotation;
             return trans;
@@ -183,17 +184,16 @@ public class Arme : MonoBehaviour {
         {
             colli.enabled = true;
         }
-        var M = transform.worldToLocalMatrix;
         TransformVector init = new TransformVector(transform.position,transform.rotation);
         TransformVector dest = new TransformVector(_normalTarget.position, _normalTarget.rotation);
         _transformCurve = new TransformCurve(init, Time.time, dest.Sub(init).Mult(-1).Sub(_transformCurve.GetSpeed(Time.time)), dest, Time.time + _timeAttack, dest.Sub(init).Mult(10),false);
         _isAttacking = true;
-        _tempCible = Instantiate(_normalTarget.gameObject);
-        _tempCible.transform.position = _normalTarget.position;
-        _tempCible.transform.rotation = _normalTarget.rotation;
-        _tempCible.GetComponentInChildren<SpriteRenderer>().color = CibleColor; 
-        _tempCible.transform.SetParent(null,true);
-        Destroy(_tempCible,_timeAttack);
+        TempCible = Instantiate(_normalTarget.gameObject);
+        TempCible.transform.position = _normalTarget.position;
+        TempCible.transform.rotation = _normalTarget.rotation;
+        TempCible.GetComponentInChildren<SpriteRenderer>().color = CibleColor; 
+        TempCible.transform.SetParent(null,true);
+        Destroy(TempCible,_timeAttack);
     }
 
 
@@ -208,12 +208,14 @@ public class Arme : MonoBehaviour {
         _zeroTransformVector = new TransformVector();
         _initialTransformVector = new TransformVector(transform.localPosition,transform.localRotation);
         _transformCurve = new TransformCurve(_initialTransformVector, Time.time, _zeroTransformVector, _initialTransformVector, Time.time, _zeroTransformVector);
+        BugManager = FindObjectOfType<BugManager>();
     }
 
     // Update is called once per frame
     protected virtual void Update()
     {
         _transformCurve.SetTransform(transform,Time.time);
+        
     }
 
     #endregion
@@ -224,9 +226,10 @@ public class Arme : MonoBehaviour {
     private static TransformVector _zeroTransformVector = new TransformVector();
     private TransformVector _initialTransformVector;
     private TransformCurve _transformCurve;
-    private bool _isAttacking = false;
-    private float _lastAttackTime = 0;
-    protected GameObject _tempCible;
+    protected bool _isAttacking = false;
+    protected float _lastAttackTime = 0;
+    protected GameObject TempCible;
+    protected BugManager BugManager;
     protected virtual void _StopAttack()
     {
         if (_isAttacking)
