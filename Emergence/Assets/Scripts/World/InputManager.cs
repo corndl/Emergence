@@ -46,6 +46,7 @@ public class InputManager : MonoBehaviour {
         Vector2 axisInclinaison = new Vector2(Input.GetAxis("VerticalInclinaison"),-Input.GetAxis("HorizontalInclinaison"));
         Vector2 axisIncline = new Vector2(Input.GetAxis("VerticalInclinaisonAxis"),-Input.GetAxis("HorizontalInclinaisonAxis"));
         _Player.Move(axis);
+        if(axisIncline.magnitude>0.1)
         _Player.Incline(45 * axisIncline);
         _Player.Rotate(axisInclinaison);
         if(Input.GetButtonDown("Fire1")||Input.GetAxis("Fire1")>0)
