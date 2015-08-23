@@ -152,7 +152,20 @@ public class BugManager : MonoBehaviour
                 b.DestroyBug();
             }
         }
+        tmp = m_DeadBugs;
+        foreach (Bug b in tmp)
+        {
+            if (b != null)
+            {
+                b.DestroyBug();
+            }
+        }
+
         m_BugList.Clear();
+        m_DeadBugs.Clear();
+
+        onBugsAlive.Invoke("0");
+        onKilledBugs.Invoke("0");
     }
     #endregion
 
