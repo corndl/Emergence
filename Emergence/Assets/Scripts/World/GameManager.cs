@@ -14,7 +14,7 @@ public class GameManager : MonoBehaviour
     [SerializeField]
     int m_MaxBugsCount = 500;
     [SerializeField]
-    public GameObject PheromonePrefab = null;
+    public GameObject FoodPrefab = null;
     [SerializeField]
     CameraController m_Player = null;
     [SerializeField]
@@ -69,6 +69,7 @@ public class GameManager : MonoBehaviour
     }
     public void StartGame()
     {
+        m_Food = Instantiate(FoodPrefab);
         Time.timeScale = 1;
         onStartGame.Invoke();
         m_BugManager.CreateNewBugs(m_BugsCount);
@@ -76,6 +77,7 @@ public class GameManager : MonoBehaviour
 
     public void EndGame()
     {
+        Destroy(m_Food);
         Time.timeScale = 0;
         m_BugManager.DestroyAllBugs();
         onEndGame.Invoke();
@@ -99,5 +101,6 @@ public class GameManager : MonoBehaviour
 
     #region Private
     private static GameManager s_Instance = null;
+    GameObject m_Food = null;
     #endregion
 }

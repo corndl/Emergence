@@ -1420,8 +1420,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_BugManager: {fileID: 11436770}
   m_BugsCount: 50
-  m_MaxBugsCount: 51
-  PheromonePrefab: {fileID: 145752, guid: 7bfe406993b92e8418ddfba00a522c72, type: 2}
+  m_MaxBugsCount: 100
+  FoodPrefab: {fileID: 143152, guid: d65fbc5d3ebccb347b62995b003bf34b, type: 2}
   m_Player: {fileID: 11400366}
   m_Matrix: {fileID: 11422334}
   onStartGame:

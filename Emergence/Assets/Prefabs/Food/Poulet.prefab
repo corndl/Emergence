@@ -69,10 +69,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Models:
-  - threshold: 66
+  - threshold: 75
     modelPrefab: {fileID: 100004, guid: 8b42ca2f023132d4098788ffd19669b8, type: 3}
-  - threshold: 33
+  - threshold: 50
     modelPrefab: {fileID: 100004, guid: eb64212fcaf1a474a9d3dfc2059433cf, type: 3}
+  - threshold: 0
+    modelPrefab: {fileID: 100004, guid: db9e131cdbbe24e46950cb62b0cd085e, type: 3}
   m_HP: 100
   m_CurrentModel: 0
 --- !u!1001 &100100000
@@ -81,7 +83,15 @@ Prefab:
   serializedVersion: 2
   m_Modification:
     m_TransformParent: {fileID: 0}
-    m_Modifications: []
+    m_Modifications:
+    - target: {fileID: 0}
+      propertyPath: m_Models.Array.data[2].threshold
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: m_Mass
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
   m_RootGameObject: {fileID: 153938}

@@ -618,7 +618,7 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 16ac38dab83fe3144a900b12614ac8d6, type: 3}
-  m_PlayOnAwake: 1
+  m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
   Loop: 0
@@ -715,20 +715,20 @@ MonoBehaviour:
   TimeTilReadyForMating:
     type: int
     value: 15
-    min: 5
+    min: 1
     max: 120
     mutationChance: .300000012
   FoodHPPerByte:
     type: int
     value: 5
     min: 1
-    max: 10
+    max: 30
     mutationChance: .5
   Size:
     type: float
     value: 1
     min: 1
-    max: 5
+    max: 3
     mutationChance: .300000012
   RangePlayerDetection:
     type: float
@@ -803,7 +803,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: TimeTilReadyForMating.min
-      value: 5
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: TimeTilReadyForMating.value
@@ -823,7 +823,15 @@ Prefab:
       objectReference: {fileID: 8300000, guid: 16ac38dab83fe3144a900b12614ac8d6, type: 3}
     - target: {fileID: 0}
       propertyPath: m_PlayOnAwake
-      value: 1
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: Size.max
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: FoodHPPerByte.max
+      value: 30
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}

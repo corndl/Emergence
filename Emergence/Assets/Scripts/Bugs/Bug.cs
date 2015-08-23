@@ -49,9 +49,15 @@ public class Bug : MonoBehaviour
     /// </summary>
     public void KillBug()
     {
+        if (IsDead)
+        {
+            return;
+        }
         m_Rigidbody.velocity = Vector3.zero;
         m_State = BugState.Dead;
         IsDead = true;
+        AudioSource audioSource = gameObject.GetComponent<AudioSource>();
+        audioSource.Play();
     }
 
     /// <summary>
