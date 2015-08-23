@@ -69,6 +69,7 @@ public class GameManager : MonoBehaviour
     }
     public void StartGame()
     {
+        Time.timeScale = 1;
         onStartGame.Invoke();
         m_BugManager.CreateNewBugs(m_BugsCount);
     }

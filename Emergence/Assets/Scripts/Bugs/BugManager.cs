@@ -147,8 +147,12 @@ public class BugManager : MonoBehaviour
         List<Bug> tmp = m_BugList;
         foreach (Bug b in tmp)
         {
-            b.DestroyBug();
+            if (b != null)
+            {
+                b.DestroyBug();
+            }
         }
+        m_BugList.Clear();
     }
     #endregion
 
